@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Reservaciones de Citas Médicas</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/estilo.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Reserva de Citas Médicas</h1>
+        <form action="procesar_formulario" name="" method="POST">
+            <label for="NombreCompleto">Nombre:</label>
+            <input type="text" id="NombreCompleto" name="NombreCompleto" required placeholder="Escriba su nombre completo">
+
+            <label for="Edad">Edad:</label>
+            <input type="number" id="Edad" name="Edad" required placeholder="Escriba su edad">
+
+            <label for="Telefono">Teléfono:</label>
+            <input type="tel" id="Telefono" name="Telefono" required placeholder="Escriba un número de teléfono válido" value="+52">
+            <small>Por favor, incluya el código de país (+52 para México) al principio de su número de teléfono o no le llegara mensaje.</small>
+            <script>
+                window.onload = function() {
+                    document.getElementById('Telefono').addEventListener('input', function(e) {
+                        if (!e.target.value.startsWith('+52')) {
+                            e.target.value = '+52' + e.target.value;
+                        }
+                    });
+                }
+            </script>
+            <label for="FechaCita">Fecha de la cita:</label>
+            <input type="date" id="FechaCita" name="FechaCita" required onchange="verificarDisponibilidad()">
+
+            <label for="HoraCita">Hora de la cita:</label>
+            <input type="time" id="HoraCita" name="HoraCita" required min="09:00" max="19:00" step="3600" onchange="verificarDisponibilidad()">
+            
+            <label for="MotivoCita">Motivo de la cita:</label>
+            <input type="text" id="MotivoCita" name="MotivoCita" required placeholder="Indique el motivo de la cita">
+
+            <label for="NotasCita">Notas de la cita:</label>
+            <textarea id="NotasCita" name="NotasCita" placeholder="Escriba notas adicionales"></textarea>
+
+            <label for="Correo_Electronico">Correo Electrónico:</label>
+            <input type="email" id="Correo_Electronico" name="Correo_Electronico" placeholder="Escriba su correo electrónico">
+
+            <input type="submit" name="enviar" id="enviar" value="Reservar Cita">
+            <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #ffd900; color: #000000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+        </form>
+    </div>
+    <script src="/static/scripts.js"></script>
+</body>
+</html>

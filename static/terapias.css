@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
+
+body {
+    background: url('https://source.unsplash.com/random') no-repeat center center/cover;
+    font-family: 'Montserrat', sans-serif;
+    color: #0c0909;  /* Color del texto */
+}
+
+#page-wrap {
+    margin: 50px;
+}
+
+p {
+    margin: 20px 0; 
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background-color: #ffffff;  /* Color de fondo de la tabla */
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+    background: #a8a2a2;  /* Color de las filas impares */
+}
+
+tr:nth-of-type(even) { 
+    background: #797070;  /* Color de las filas pares */
+}
+
+th { 
+    background: #080303; 
+    color: white; 
+    font-weight: bold; 
+}
+
+td, th { 
+    padding: 6px; 
+    border: 2px solid #0c0808; 
+    text-align: left; 
+}
+
+h1 {
+    text-align: center;
+}
