@@ -21,7 +21,7 @@ function verificarDisponibilidad() {
                 alert('Lo siento, este horario ya está reservado. Por favor, selecciona otro horario.');
                 document.getElementById('Disponibilidad').value = '';
             } else {
-                console.log('Horario disponible. Puedes proceder con la reserva.');
+                console.log('Horario disponible. Puedes proceder con la reservacion.');
             }
         })
         .catch(error => {

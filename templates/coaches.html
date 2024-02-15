@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Reservaciones del día</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/coaches.css">
+    
+    <script>
+        window.onload = async function() {
+            const fecha = new Date().toISOString().split('T')[0];
+            const response = await fetch(`/reservacion_del_dia/${fecha}`);
+            const reservaciones_del_dia = await response.json();
+            console.log(reservaciones_del_dia);  // Imprime los datos recibidos
+            if (!Array.isArray(reservaciones_del_dia)) {
+                console.error('La respuesta de la API no es un array:', reservaciones_del_dia);
+                return;
+            }
+            const tablareservaciones = document.getElementById('tablareservaciones').getElementsByTagName('tbody')[0];
+            tablareservaciones.innerHTML = '';
+            for (let reserva of reservaciones_del_dia) {
+                console.log(reserva);  // Imprime cada reservacion
+                let filaNueva = tablareservaciones.insertRow();
+                if (reserva.fecha_hora_reservacion) {
+                    filaNueva.insertCell().innerText = reserva.NombreCompleto;
+                    filaNueva.insertCell().innerText = reserva.Telefono;
+                    filaNueva.insertCell().innerText = reserva.ObjetivoFitness;
+                    filaNueva.insertCell().innerText = reserva.Disponibilidad;
+                    filaNueva.insertCell().innerText = reserva.InformacionSalud;
+                    filaNueva.insertCell().innerText = reserva.PreferenciasDieteticas;
+                    filaNueva.insertCell().innerText = reserva.CorreoElectronico;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Reservaciones del Día</h1>
+    <table id="tablareservaciones">
+        <thead>
+            <tr>
+                <th>Nombre Completo</th>
+                <th>Teléfono</th>
+                <th>Objetivo de Fitness</th>
+                <th>Disponibilidad</th>
+                <th>Información de Salud</th>
+                <th>Preferencias Dietéticas</th>
+                <th>Correo electrónico</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+</html>

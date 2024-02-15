@@ -6,8 +6,10 @@
     <link rel="stylesheet" type="text/css" href="/static/estilo.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css" />
 </head>
 <body>
     <div class="container">
@@ -16,12 +18,12 @@
             <label for="NombreCompleto">Nombre:</label>
             <input type="text" id="NombreCompleto" name="NombreCompleto" required placeholder="Escriba su nombre completo">
 
-            <label for="Correo_Electronico">Correo Electrónico:</label>
-            <input type="email" id="Correo_Electronico" name="Correo_Electronico" required placeholder="Escriba su correo electrónico">
+            <label for="CorreoElectronico">Correo Electrónico:</label>
+            <input type="email" id="CorreoElectronico" name="CorreoElectronico" required placeholder="Escriba su correo electrónico">
 
             <label for="Telefono">Teléfono:</label>
             <input type="tel" id="Telefono" name="Telefono" required placeholder="Escriba un número de teléfono válido" value="+52">
-            <small>Por favor, incluya el código de país (+52 para México) al principio de su número de teléfono o no le llegara mensaje.</small>
+            <small>Por favor, incluya el código de país (+52 para México) al principio de su número de teléfono o no le llegará mensaje.</small>
             <script>
                 window.onload = function() {
                     document.getElementById('Telefono').addEventListener('input', function(e) {
@@ -41,18 +43,26 @@
             </select>
 
             <label for="Disponibilidad">Disponibilidad:</label>
-            <input type="datetime-local" id="Disponibilidad" name="Disponibilidad" required>
+            <input type="text" id="Disponibilidad" name="Disponibilidad" required>
+            <label for="Fecha">Fecha:</label>
+            <input type="text" id="Fecha" name="Fecha" required>
+
+            <label for="Hora">Hora:</label>
+            <input type="text" id="Hora" name="Hora" required>
+
             <script>
                 $(document).ready(function(){
-                    $('#Disponibilidad').datetimepicker({
-                        format:'Y-m-d H:i',
+                    $('#Fecha').datepicker({
                         minDate: 0, // deshabilita las fechas pasadas
-                        minTime: '08:00',
-                        maxTime: '20:00',
-                        step: 60, // incrementos de 60 minutos
-                        daysOfWeekDisabled: [0,6], // deshabilita domingo y sábado
-                        yearStart: new Date().getFullYear(), // empieza desde el año actual
-                        defaultSelect: false // el usuario debe seleccionar una fecha
+                        dateFormat: 'yy-mm-dd', // formato de la fecha
+                        beforeShowDay: $.datepicker.noWeekends // deshabilita domingo y sábado
+                    });
+
+                    $('#Hora').timepicker({
+                        'timeFormat': 'H:i',
+                        'minTime': '08:00',
+                        'maxTime': '20:00',
+                        'step': 60 // incrementos de 60 minutos
                     });
                 });
             </script>
@@ -80,13 +90,13 @@
                     Entiendo que es mi responsabilidad seguir las instrucciones y recomendaciones proporcionadas por el equipo. Si tengo alguna pregunta o preocupación, me pondré en contacto con el equipo para obtener aclaraciones.
                     
                     Acepto los términos y condiciones del servicio de entrenamiento personal.</p>
-            <label for="Consentimiento">
-                <input type="checkbox" id="Consentimiento" name="Consentimiento" required>
-                Acepto los términos y condiciones del servicio.
-            </label>
+                <label for="Consentimiento">
+                    <input type="checkbox" id="Consentimiento" name="Consentimiento" required>
+                    Acepto los términos y condiciones del servicio.
+                </label>
             </div>
             <input type="button" id="siguiente" value="Siguiente">
-            <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento">
+            <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento" style="display: none;"> <!-- Modificado para ocultarlo inicialmente -->
             <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #ffd900; color: #000000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
             <script>
                 document.getElementById('siguiente').addEventListener('click', function() {

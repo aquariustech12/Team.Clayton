@@ -6,15 +6,10 @@ from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, 
 from sqlalchemy.orm import Session
 from fastapi.responses import HTMLResponse, JSONResponse
 from datetime import datetime
-from sqlalchemy.sql import and_
-from datetime import time as Time
-from sqlalchemy import Date
-from sqlalchemy import Time
 import pywhatkit
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from sqlalchemy import text
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -23,33 +18,31 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-engine = create_engine('sqlite:///pacientes.db', echo=True)
+engine = create_engine('sqlite:///clientes.db', echo=True)
 metadata = MetaData()
 
-pacientes = Table(
-    'pacientes', metadata,
+clientes = Table(
+    'clientes', metadata,
     Column('id', Integer, primary_key=True),
-    Column('nombre_completo', String),
-    Column('edad', Integer),
-    Column('telefono', String),
-    Column('fecha_hora_cita', DateTime),
-    Column('motivo_cita', String),
-    Column('notas_cita', String),
-    Column('correo_electronico', String)
+    Column('NombreCompleto', String),
+    Column('Telefono', String),
+    Column('ObjetivoFitness', String),
+    Column('Disponibilidad', DateTime),
+    Column('InformacionSalud', String),
+    Column('PreferenciasDieteticas', String),
+    Column('CorreoElectronico', String)
 )
-citas = Table(
-    'citas', metadata,
+Reservaciones = Table(
+    'Reservaciones', metadata,
     Column('id', Integer, primary_key=True),
-    Column('fecha', Date),
-    Column('hora', Time),
-    Column('disponible', Boolean, default=True)
+    Column('Disponibilidad', DateTime),  # Cambiado de Boolean a DateTime
 )
-medicos = Table(
-    'medicos', metadata,
+coach = Table(
+    'coach', metadata,
     Column('id', Integer, primary_key=True),
-    Column('nombre', String),
-    Column('telefono', String),
-    Column('correo_electronico', String)
+    Column('NombreCompleto', String),
+    Column('Telefono', String),
+    Column('CorreoElectronico', String)
 )
 metadata.create_all(engine)
 
@@ -57,16 +50,16 @@ metadata.create_all(engine)
 async def startup_event():
     db = Session(bind=engine)
     try:
-        # Añadir médicos a la base de datos
-        medico1 = medicos.insert().values(nombre='Pedro Perez', telefono='+525581073859', correo_electronico='generalmanager@maritimeprotection.mx')
-        medico2 = medicos.insert().values(nombre='Julian Lugo', telefono='+526444475422', correo_electronico='jlugog1274@gmail.com')
+        # Añadir coach a la base de datos
+        coach1 = coach.insert().values(NombreCompleto='Valeria Clayton', Telefono='+526441456020', CorreoElectronico='teamclayton26@gmail.com')
+        coach2 = coach.insert().values(NombreCompleto='Julian Lugo', Telefono='+526444475422', CorreoElectronico='jlugog1274@gmail.com')
 
-        db.execute(medico1)
-        db.execute(medico2)
+        db.execute(coach1)
+        db.execute(coach2)
         db.commit()
     except Exception as e:
-        logger.error(f"Error al añadir médicos a la base de datos: {e}")
-        raise HTTPException(status_code=500, detail="Error al añadir médicos a la base de datos")
+        logger.error(f"Error al añadir coaches a la base de datos: {e}")
+        raise HTTPException(status_code=500, detail="Error al añadir coaches a la base de datos")
     finally:
         db.close()
 
@@ -74,29 +67,29 @@ async def startup_event():
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.post("/cita_disponible")
-async def cita_disponible_post(fecha: str = Form(...), hora: str = Form(...)):
+@app.post("/reservacion_disponible")
+async def reservacion_disponible_post(fecha: str = Form(...), hora: str = Form(...)):
     try:
         fecha_formateada = datetime.strptime(fecha, "%Y-%m-%d").date()
         hora_formateada = datetime.strptime(hora, "%H:%M").time()
         db = Session(bind=engine)
-        cita = db.execute(select(citas).where(and_(citas.c.fecha == fecha_formateada, citas.c.hora == hora_formateada))).first()
+        reservacion_disponible = db.execute(select(Reservaciones).where((Reservaciones.c.fecha == fecha_formateada, Reservaciones.c.hora == hora_formateada))).first()
 
-        if cita is None:
-            nueva_cita = citas.insert().values(fecha=fecha_formateada, hora=hora_formateada, disponible=True)
-            db.execute(nueva_cita)
+        if reservacion_disponible is None:
+            reservacion_nueva = Reservaciones.insert().values(fecha=fecha_formateada, hora=hora_formateada, Disponibilidad=True)
+            db.execute(reservacion_nueva)
             db.commit()
             return JSONResponse(content={"disponible": True})
-        elif cita and cita.disponible:
-            db.execute(update(citas).where(and_(citas.c.fecha == fecha_formateada, citas.c.hora == hora_formateada)).values(disponible=False))
+        elif reservacion_disponible and reservacion_disponible.Disponibilidad:
+            db.execute(update(Reservaciones).where((Reservaciones.c.fecha == fecha_formateada, Reservaciones.c.hora == hora_formateada)).values(Disponibilidad=False))
             db.commit()
             return JSONResponse(content={"disponible": True})
         else:
             return JSONResponse(content={"disponible": False}, status_code=200)
 
     except Exception as e:
-        logger.error(f"Error al verificar la disponibilidad de la cita: {e}")
-        raise HTTPException(status_code=500, detail="Error al verificar la disponibilidad de la cita")
+        logger.error(f"Error al verificar la disponibilidad de la Reservacion: {e}")
+        raise HTTPException(status_code=500, detail="Error al verificar la disponibilidad de la Reservacion")
     finally:
         db.close()
 
@@ -104,51 +97,50 @@ async def cita_disponible_post(fecha: str = Form(...), hora: str = Form(...)):
 async def procesar_formulario(
     request: Request,
     NombreCompleto: str = Form(...),
-    Edad: str = Form(...),
     Telefono: str = Form(...),
-    FechaCita: str = Form(...),
-    HoraCita: str = Form(...),
-    MotivoCita: str = Form(...),
-    NotasCita: str = Form(...),
-    Correo_Electronico: str = Form(...)
+    ObjetivoFitness: str = Form(...),
+    Disponibilidad: str = Form(...),
+    InformacionSalud: str = Form(...),
+    CorreoElectronico: str = Form(...)
 ):
     db = Session(bind=engine)
 
-    fecha_cita = datetime.strptime(FechaCita, "%Y-%m-%d").date()
-    hora_cita = datetime.strptime(HoraCita, "%H:%M").time()
+    # Convertir la cadena de texto de la disponibilidad a un objeto datetime
+    disponibilidad_reservacion = datetime.strptime(Disponibilidad, "%H:%M %Y-%m-%d")
+
 
     try:
-        # Verificamos nuevamente si la cita está disponible antes de procesar el formulario
-        cita = db.execute(select(citas).where(and_(citas.c.fecha == fecha_cita, citas.c.hora == hora_cita))).first()
-        if cita is not None and not cita.disponible:
-            raise HTTPException(status_code=422, detail="Lo siento, esta cita ya está reservada.")
+        # Verificar nuevamente si la reservación está disponible antes de procesar el formulario
+        reservacion_disponible = db.execute(select(Reservaciones).where(Reservaciones.c.Disponibilidad == disponibilidad_reservacion)).first()
+        if reservacion_disponible is not None and not reservacion_disponible.Disponibilidad:
+            raise HTTPException(status_code=422, detail="Lo siento, este lugar ya está reservado.")
         
-        # Insertamos una nueva cita en la tabla citas
-        nueva_cita = citas.insert().values(fecha=fecha_cita, hora=hora_cita, disponible=False)
-        db.execute(nueva_cita)
-        
+        # Insertar una nueva reservación en la tabla Reservaciones
+        nueva_reservacion = Reservaciones.insert().values(Disponibilidad=disponibilidad_reservacion)
+        db.execute(nueva_reservacion)
+
         # Resto del código para procesar el formulario
-        nuevo_paciente = pacientes.insert().values(
-            nombre_completo=NombreCompleto,
-            edad=Edad,
-            telefono=Telefono,
-            fecha_hora_cita=datetime.combine(fecha_cita, hora_cita),
-            motivo_cita=MotivoCita,
-            notas_cita=NotasCita,
-            correo_electronico=Correo_Electronico
+        nuevo_cliente = clientes.insert().values(
+            NombreCompleto=NombreCompleto,
+            Telefono=Telefono,
+            ObjetivoFitness=ObjetivoFitness,
+            Disponibilidad=disponibilidad_reservacion,
+            InformacionSalud=InformacionSalud,
+            CorreoElectronico=CorreoElectronico,
         )
-        db.execute(nuevo_paciente)
+        db.execute(nuevo_cliente)
         db.commit()
 
+
         # Enviar un mensaje de WhatsApp
-        pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", hora_cita.hour, hora_cita.minute)
+        pywhatkit.sendwhatmsg_instantly(Telefono, "¡Reservación programada exitosamente!", Disponibilidad)
 
         # Enviar un correo electrónico
         msg = MIMEMultipart()
         msg['From'] = 'teamclayton26@gmail.com'
-        msg['To'] = Correo_Electronico
-        msg['Subject'] = 'Confirmación de cita'
-        message = '¡Cita reservada exitosamente!'
+        msg['To'] = CorreoElectronico
+        msg['Subject'] = 'Confirmación de Reservación'
+        message = '¡Reservación programada exitosamente!'
         msg.attach(MIMEText(message))
 
         mailserver = smtplib.SMTP('smtp.gmail.com', 587)
@@ -156,7 +148,7 @@ async def procesar_formulario(
         mailserver.starttls()
         mailserver.ehlo()
         mailserver.login('teamclayton26@gmail.com', 'beywfxlirstlutha')
-        mailserver.sendmail('teamclayton26@gmail.com', Correo_Electronico, msg.as_string())
+        mailserver.sendmail('teamclayton26@gmail.com', CorreoElectronico, msg.as_string())
         mailserver.quit()
 
     except HTTPException:
@@ -169,32 +161,31 @@ async def procesar_formulario(
 
     return templates.TemplateResponse("confirmacion.html", {"request": request, "message": "¡Datos procesados exitosamente!"})
 
-@app.get("/citas_del_dia/{fecha}")
-async def citas_del_dia(fecha: str):
+@app.get("/reservacion_del_dia/{fecha}")
+async def reservacion_del_dia(fecha: str):
     fecha_formateada = datetime.strptime(fecha, "%Y-%m-%d").date()
     db = Session(bind=engine)
     try:
-        # Usa alias 'pac' para simplificar la referencia
-        citas_del_dia = db.execute(select(pacientes).where(pacientes.c.fecha_hora_cita >= fecha_formateada)).all()
-        citas_json = [{
-            'id': cita.id,
-            'nombre_completo': cita.nombre_completo,
-            'edad': cita.edad,
-            'telefono': cita.telefono,
-            'fecha_hora_cita': cita.fecha_hora_cita.isoformat() if cita.fecha_hora_cita else None,
-            'motivo_cita': cita.motivo_cita,
-            'notas_cita': cita.notas_cita,
-            'correo_electronico': cita.correo_electronico
-        } for cita in citas_del_dia]
-        return JSONResponse(content=citas_json)
+        # Usa alias 'reservaciones' para simplificar la referencia
+        reservaciones_del_dia = db.execute(select(Reservaciones).where(Reservaciones.c.fecha == fecha_formateada)).all()
+        reservaciones_json = [{
+            'id': reserva.id,
+            'NombreCompleto': reserva.NombreCompleto,
+            'Telefono': reserva.Telefono,
+            'ObjetivoFitness': reserva.ObjetivoFitness,
+            'Disponibilidad': reserva.Disponibilidad,
+            'InformacionSalud': reserva.InformacionSalud,
+            'CorreoElectronico': reserva.CorreoElectronico
+        } for reserva in reservaciones_del_dia]
+        return JSONResponse(content=reservaciones_json)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         db.close()
 
-@app.get("/terapeutas", response_class=HTMLResponse)
-async def terapeutas(request: Request):
-    return templates.TemplateResponse("terapeutas.html", {"request": request})
+@app.get("/coaches", response_class=HTMLResponse)
+async def coaches(request: Request):
+    return templates.TemplateResponse("coaches.html", {"request": request})
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
