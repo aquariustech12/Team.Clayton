@@ -131,8 +131,6 @@ async def procesar_formulario(
             Telefono=Telefono,
             ObjetivoFitness=ObjetivoFitness,
             Disponibilidad=disponibilidad_reservacion,
-            Fecha=Fecha,
-            Hora=Hora,
             InformacionSalud=InformacionSalud,
             PreferenciasDieteticas=PreferenciasDieteticas,
             CorreoElectronico=CorreoElectronico,
@@ -141,7 +139,7 @@ async def procesar_formulario(
         db.commit()
 
         # Enviar un mensaje de WhatsApp
-        pywhatkit.sendwhatmsg_instantly(Telefono, "¡Reservación programada exitosamente!", Disponibilidad)
+        pywhatkit.sendwhatmsg_instantly(Telefono, "¡Reservación programada exitosamente!")
 
         # Enviar un correo electrónico
         msg = MIMEMultipart()
