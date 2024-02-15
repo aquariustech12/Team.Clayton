@@ -107,13 +107,13 @@ async def procesar_formulario(
     Fecha: str = Form(...),
     Hora: str = Form(...),
     InformacionSalud: str = Form(...),
+    PreferenciasDieteticas: str = Form (...),
     CorreoElectronico: str = Form(...)
 ):
     db = Session(bind=engine)
 
-    # Convertir la cadena de texto de la disponibilidad a un objeto datetime
-    disponibilidad_reservacion = datetime.strptime(Disponibilidad, "%H:%M %Y-%m-%d")
-
+    # Convertir la cadena de texto de la fecha y la hora a un objeto datetime
+    disponibilidad_reservacion = datetime.strptime(Fecha + ' ' + Hora, "%Y-%m-%d %H:%M")
 
     try:
         # Verificar nuevamente si la reservación está disponible antes de procesar el formulario
@@ -134,6 +134,7 @@ async def procesar_formulario(
             Fecha=Fecha,
             Hora=Hora,
             InformacionSalud=InformacionSalud,
+            PreferenciasDieteticas=PreferenciasDieteticas,
             CorreoElectronico=CorreoElectronico,
         )
         db.execute(nuevo_cliente)
@@ -184,6 +185,7 @@ async def reservacion_del_dia(fecha: str):
             'Fecha': reserva.Fecha,
             'Hora': reserva.Hora,
             'InformacionSalud': reserva.InformacionSalud,
+            'PreferenciasDieteticas': reserva.PreferenciasDieteticas,
             'CorreoElectronico': reserva.CorreoElectronico
         } for reserva in reservaciones_del_dia]
         return JSONResponse(content=reservaciones_json)
