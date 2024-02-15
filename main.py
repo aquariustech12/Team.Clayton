@@ -28,6 +28,8 @@ clientes = Table(
     Column('Telefono', String),
     Column('ObjetivoFitness', String),
     Column('Disponibilidad', DateTime),
+    Column('Fecha', DateTime),
+    Column('Hora', DateTime),
     Column('InformacionSalud', String),
     Column('PreferenciasDieteticas', String),
     Column('CorreoElectronico', String)
@@ -36,6 +38,8 @@ Reservaciones = Table(
     'Reservaciones', metadata,
     Column('id', Integer, primary_key=True),
     Column('Disponibilidad', DateTime),  # Cambiado de Boolean a DateTime
+    Column('Fecha', DateTime),
+    Column('Hora', DateTime)
 )
 coach = Table(
     'coach', metadata,
@@ -100,6 +104,8 @@ async def procesar_formulario(
     Telefono: str = Form(...),
     ObjetivoFitness: str = Form(...),
     Disponibilidad: str = Form(...),
+    Fecha: str = Form(...),
+    Hora: str = Form(...),
     InformacionSalud: str = Form(...),
     CorreoElectronico: str = Form(...)
 ):
@@ -125,12 +131,13 @@ async def procesar_formulario(
             Telefono=Telefono,
             ObjetivoFitness=ObjetivoFitness,
             Disponibilidad=disponibilidad_reservacion,
+            Fecha=Fecha,
+            Hora=Hora,
             InformacionSalud=InformacionSalud,
             CorreoElectronico=CorreoElectronico,
         )
         db.execute(nuevo_cliente)
         db.commit()
-
 
         # Enviar un mensaje de WhatsApp
         pywhatkit.sendwhatmsg_instantly(Telefono, "¡Reservación programada exitosamente!", Disponibilidad)
@@ -174,6 +181,8 @@ async def reservacion_del_dia(fecha: str):
             'Telefono': reserva.Telefono,
             'ObjetivoFitness': reserva.ObjetivoFitness,
             'Disponibilidad': reserva.Disponibilidad,
+            'Fecha': reserva.Fecha,
+            'Hora': reserva.Hora,
             'InformacionSalud': reserva.InformacionSalud,
             'CorreoElectronico': reserva.CorreoElectronico
         } for reserva in reservaciones_del_dia]
