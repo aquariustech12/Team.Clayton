@@ -10,11 +10,7 @@ from sqlalchemy.sql import and_
 from datetime import time as Time
 from sqlalchemy import Date
 from sqlalchemy import Time
-# Agregar estas líneas para desactivar el modo FAILSAFE de pyautogui
-# import pyautogui
-# pyautogui.FAILSAFE = False
-# pyautogui._pyautogui_x11._display = None
-# import pywhatkit
+import pywhatkit
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -57,7 +53,7 @@ medicos = Table(
 )
 metadata.create_all(engine)
 
-@app.lifespan.on_startup
+@app.on_event("startup")
 async def startup_event():
     db = Session(bind=engine)
     try:
@@ -145,11 +141,11 @@ async def procesar_formulario(
         db.commit()
 
         # Enviar un mensaje de WhatsApp
-        # pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", hora_cita.hour, hora_cita.minute)
+        pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", hora_cita.hour, hora_cita.minute)
 
         # Enviar un correo electrónico
         msg = MIMEMultipart()
-        msg['From'] = 'marketingconsultantsmx@gmail.com'
+        msg['From'] = 'teamclayton26@gmail.com'
         msg['To'] = Correo_Electronico
         msg['Subject'] = 'Confirmación de cita'
         message = '¡Cita reservada exitosamente!'
@@ -159,8 +155,8 @@ async def procesar_formulario(
         mailserver.ehlo()
         mailserver.starttls()
         mailserver.ehlo()
-        mailserver.login('marketingconsultantsmx@gmail.com', 'dcfcusagrzhhcmyx')
-        mailserver.sendmail('marketingconsultantsmx@gmail.com', Correo_Electronico, msg.as_string())
+        mailserver.login('teamclayton26@gmail.com', 'beywfxlirstlutha')
+        mailserver.sendmail('teamclayton26@gmail.com', Correo_Electronico, msg.as_string())
         mailserver.quit()
 
     except HTTPException:

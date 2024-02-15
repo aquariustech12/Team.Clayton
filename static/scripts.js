@@ -1,30 +1,27 @@
 function verificarDisponibilidad() {
-    var fechaCita = document.getElementById('FechaCita').value;
-    var horaCita = document.getElementById('HoraCita').value;
+    var disponibilidad = document.getElementById('Disponibilidad').value;
 
-    // Solo verifica la disponibilidad si ambos campos, fecha y hora, están llenos
-    if (fechaCita && horaCita) {
-        console.log(fechaCita);
+    // Solo verifica la disponibilidad si el campo de disponibilidad está lleno
+    if (disponibilidad) {
+        console.log(disponibilidad);
         console.log('Enviando solicitud para verificar disponibilidad...');
 
-        fetch('/cita_disponible', {
+        fetch('/entrenamiento_disponible', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams({
-                'fecha': fechaCita,
-                'hora': horaCita
+                'disponibilidad': disponibilidad
             })
         })
         .then(response => response.json())
         .then(data => {
             if (!data.disponible) {
-                alert('Lo siento, esta fecha ya está reservada. Por favor, selecciona otra fecha.');
-                document.getElementById('FechaCita').value = '';
-                document.getElementById('HoraCita').value = '';
+                alert('Lo siento, este horario ya está reservado. Por favor, selecciona otro horario.');
+                document.getElementById('Disponibilidad').value = '';
             } else {
-                console.log('Fecha disponible. Puedes proceder con la reserva.');
+                console.log('Horario disponible. Puedes proceder con la reserva.');
             }
         })
         .catch(error => {
@@ -32,3 +29,15 @@ function verificarDisponibilidad() {
         });
     }
 }
+
+document.getElementById('siguiente').addEventListener('click', function() {
+    // Verificar que todos los campos del formulario están llenos
+    // ...
+
+    // Mostrar el disclaimer y el botón de enviar
+    document.getElementById('disclaimer').style.display = 'block';
+    document.getElementById('enviar').style.display = 'inline-block';
+
+    // Ocultar el botón de siguiente
+    this.style.display = 'none';
+});

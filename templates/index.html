@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Reservaciones de Citas Médicas</title>
+    <title>Reservaciones de Entrenamiento Personal</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/estilo.css">
 
@@ -11,13 +11,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Reserva de Citas Médicas</h1>
+        <h1>Reservaciones de Entrenamiento Personal</h1>
         <form action="procesar_formulario" name="" method="POST">
             <label for="NombreCompleto">Nombre:</label>
             <input type="text" id="NombreCompleto" name="NombreCompleto" required placeholder="Escriba su nombre completo">
 
-            <label for="Edad">Edad:</label>
-            <input type="number" id="Edad" name="Edad" required placeholder="Escriba su edad">
+            <label for="Correo_Electronico">Correo Electrónico:</label>
+            <input type="email" id="Correo_Electronico" name="Correo_Electronico" required placeholder="Escriba su correo electrónico">
 
             <label for="Telefono">Teléfono:</label>
             <input type="tel" id="Telefono" name="Telefono" required placeholder="Escriba un número de teléfono válido" value="+52">
@@ -31,23 +31,76 @@
                     });
                 }
             </script>
-            <label for="FechaCita">Fecha de la cita:</label>
-            <input type="date" id="FechaCita" name="FechaCita" required onchange="verificarDisponibilidad()">
+            <label for="ObjetivoFitness">Objetivo de Fitness:</label>
+            <select id="ObjetivoFitness" name="ObjetivoFitness" required>
+                <option value="">--Por favor seleccione--</option>
+                <option value="perder_peso">Perder Peso</option>
+                <option value="ganar_musculo">Ganar Músculo</option>
+                <option value="mejorar_rendimiento">Mejorar Rendimiento Deportivo</option>
+                <option value="vida_saludable">Llevar un Estilo de Vida Saludable</option>
+            </select>
 
-            <label for="HoraCita">Hora de la cita:</label>
-            <input type="time" id="HoraCita" name="HoraCita" required min="09:00" max="19:00" step="3600" onchange="verificarDisponibilidad()">
-            
-            <label for="MotivoCita">Motivo de la cita:</label>
-            <input type="text" id="MotivoCita" name="MotivoCita" required placeholder="Indique el motivo de la cita">
+            <label for="Disponibilidad">Disponibilidad:</label>
+            <input type="datetime-local" id="Disponibilidad" name="Disponibilidad" required>
+            <script>
+                $(document).ready(function(){
+                    $('#Disponibilidad').datetimepicker({
+                        format:'Y-m-d H:i',
+                        minDate: 0, // deshabilita las fechas pasadas
+                        minTime: '08:00',
+                        maxTime: '20:00',
+                        step: 60, // incrementos de 60 minutos
+                        daysOfWeekDisabled: [0,6], // deshabilita domingo y sábado
+                        yearStart: new Date().getFullYear(), // empieza desde el año actual
+                        defaultSelect: false // el usuario debe seleccionar una fecha
+                    });
+                });
+            </script>
 
-            <label for="NotasCita">Notas de la cita:</label>
-            <textarea id="NotasCita" name="NotasCita" placeholder="Escriba notas adicionales"></textarea>
-
-            <label for="Correo_Electronico">Correo Electrónico:</label>
-            <input type="email" id="Correo_Electronico" name="Correo_Electronico" placeholder="Escriba su correo electrónico">
-
-            <input type="submit" name="enviar" id="enviar" value="Reservar Cita">
+            <label for="InformacionSalud">Información de Salud:</label>
+            <textarea id="InformacionSalud" name="InformacionSalud" placeholder="Escriba cualquier condición de salud o lesión que debamos tener en cuenta"></textarea>
+            <div style="text-align: center;">
+                <label for="InformacionSalud">
+                    <input type="checkbox" id="AceptoExamenMedico" name="Acepto" required>
+                    Acepto Examen Medico.
+                </label>
+            </div>
+            <label for="PreferenciasDieteticas">Preferencias Dietéticas:</label>
+            <textarea id="PreferenciasDieteticas" name="PreferenciasDieteticas" placeholder="Escriba cualquier restricción dietética, alergia, o preferencia"></textarea>
+            <div id="disclaimer" style="display: none;">
+                <h2>Términos y Condiciones del Servicio de Entrenamiento Personal</h2>
+                <p>Al marcar esta casilla, confirmo que he leído y entendido los términos y condiciones del servicio de entrenamiento personal. Entiendo que el servicio incluye entrenamiento personalizado y asesoría nutricional diseñados para ayudarme a alcanzar mis metas de salud y fitness.
+                    
+                    Entiendo que el equipo de profesionales dedicados proporcionará planes de entrenamiento y dietas personalizadas que se ajusten a mi estilo de vida y necesidades individuales. Si elijo perder peso, ganar músculo, mejorar mi rendimiento deportivo o simplemente llevar un estilo de vida más saludable, entiendo que el equipo está aquí para guiarme en cada paso del camino.
+                    
+                    Confirmo que la información que he proporcionado es precisa y completa. Entiendo que es mi responsabilidad informar al equipo de cualquier cambio en mi salud o condición física.
+                    
+                    Al aceptar el examen médico, entiendo que es un plus del servicio y que el equipo está formado por un entrenador, un médico y un nutricionista.
+                    
+                    Entiendo que es mi responsabilidad seguir las instrucciones y recomendaciones proporcionadas por el equipo. Si tengo alguna pregunta o preocupación, me pondré en contacto con el equipo para obtener aclaraciones.
+                    
+                    Acepto los términos y condiciones del servicio de entrenamiento personal.</p>
+            <label for="Consentimiento">
+                <input type="checkbox" id="Consentimiento" name="Consentimiento" required>
+                Acepto los términos y condiciones del servicio.
+            </label>
+            </div>
+            <input type="button" id="siguiente" value="Siguiente">
+            <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento">
             <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #ffd900; color: #000000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+            <script>
+                document.getElementById('siguiente').addEventListener('click', function() {
+                    // Verificar que todos los campos del formulario están llenos
+                    // ...
+            
+                    // Mostrar el disclaimer y el botón de enviar
+                    document.getElementById('disclaimer').style.display = 'block';
+                    document.getElementById('enviar').style.display = 'inline-block';
+            
+                    // Ocultar el botón de siguiente
+                    this.style.display = 'none';
+                });
+            </script>        
         </form>
     </div>
     <script src="/static/scripts.js"></script>
