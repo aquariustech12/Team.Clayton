@@ -27,7 +27,7 @@ clientes = Table(
     Column('NombreCompleto', String),
     Column('Telefono', String),
     Column('ObjetivoFitness', String),
-    Column('Disponibilidad', DateTime),
+    Column('Disponibilidad', String),
     Column('Fecha', DateTime),
     Column('Hora', DateTime),
     Column('InformacionSalud', String),
@@ -37,7 +37,7 @@ clientes = Table(
 Reservaciones = Table(
     'Reservaciones', metadata,
     Column('id', Integer, primary_key=True),
-    Column('Disponibilidad', DateTime),  # Cambiado de Boolean a DateTime
+    Column('Disponibilidad', String),  # Cambiado de DateTime a texto
     Column('Fecha', DateTime),
     Column('Hora', DateTime)
 )
@@ -74,18 +74,15 @@ async def read_root(request: Request):
 @app.post("/reservacion_disponible")
 async def reservacion_disponible_post(fecha: str = Form(...), hora: str = Form(...)):
     try:
-        fecha_formateada = datetime.strptime(fecha, "%Y-%m-%d").date()
-        hora_formateada = datetime.strptime(hora, "%H:%M").time()
+        # Convertir la cadena de texto de la fecha y la hora a un objeto datetime
+        disponibilidad_reservacion = datetime.strptime(fecha + ' ' + hora, "%Y-%m-%d %H:%M")
+
         db = Session(bind=engine)
-        reservacion_disponible = db.execute(select(Reservaciones).where((Reservaciones.c.fecha == fecha_formateada, Reservaciones.c.hora == hora_formateada))).first()
+        reservacion_disponible = db.execute(select(Reservaciones).where(Reservaciones.c.fecha == disponibilidad_reservacion)).first()
 
         if reservacion_disponible is None:
-            reservacion_nueva = Reservaciones.insert().values(fecha=fecha_formateada, hora=hora_formateada, Disponibilidad=True)
+            reservacion_nueva = Reservaciones.insert().values(fecha=disponibilidad_reservacion)
             db.execute(reservacion_nueva)
-            db.commit()
-            return JSONResponse(content={"disponible": True})
-        elif reservacion_disponible and reservacion_disponible.Disponibilidad:
-            db.execute(update(Reservaciones).where((Reservaciones.c.fecha == fecha_formateada, Reservaciones.c.hora == hora_formateada)).values(Disponibilidad=False))
             db.commit()
             return JSONResponse(content={"disponible": True})
         else:
@@ -113,16 +110,18 @@ async def procesar_formulario(
     db = Session(bind=engine)
 
     # Convertir la cadena de texto de la fecha y la hora a un objeto datetime
-    disponibilidad_reservacion = datetime.strptime(Fecha + ' ' + Hora, "%Y-%m-%d %H:%M")
+    fecha_reservacion = datetime.strptime(Fecha, "%Y-%m-%d")
+    hora_reservacion = datetime.strptime(Hora, "%H:%M").time()
+    disponibilidad_reservacion = datetime.combine(fecha_reservacion, hora_reservacion)
 
     try:
         # Verificar nuevamente si la reservación está disponible antes de procesar el formulario
-        reservacion_disponible = db.execute(select(Reservaciones).where(Reservaciones.c.Disponibilidad == disponibilidad_reservacion)).first()
-        if reservacion_disponible is not None and not reservacion_disponible.Disponibilidad:
+        reservacion_disponible = db.execute(select(Reservaciones).where(Reservaciones.c.fecha == disponibilidad_reservacion)).first()
+        if reservacion_disponible is not None:
             raise HTTPException(status_code=422, detail="Lo siento, este lugar ya está reservado.")
         
         # Insertar una nueva reservación en la tabla Reservaciones
-        nueva_reservacion = Reservaciones.insert().values(Disponibilidad=disponibilidad_reservacion)
+        nueva_reservacion = Reservaciones.insert().values(fecha=disponibilidad_reservacion)
         db.execute(nueva_reservacion)
 
         # Resto del código para procesar el formulario
@@ -131,12 +130,15 @@ async def procesar_formulario(
             Telefono=Telefono,
             ObjetivoFitness=ObjetivoFitness,
             Disponibilidad=disponibilidad_reservacion,
+            Fecha=Fecha,
+            Hora=Hora,
             InformacionSalud=InformacionSalud,
             PreferenciasDieteticas=PreferenciasDieteticas,
             CorreoElectronico=CorreoElectronico,
         )
         db.execute(nuevo_cliente)
         db.commit()
+
 
         # Enviar un mensaje de WhatsApp
         pywhatkit.sendwhatmsg_instantly(Telefono, "¡Reservación programada exitosamente!")
