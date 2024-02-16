@@ -93,3 +93,5 @@ INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "
 INFO:sqlalchemy.engine.Engine:[cached since 0.0006551s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
 INFO:sqlalchemy.engine.Engine:COMMIT
 ERROR:main:Error al procesar formulario: fecha
+ERROR:main:Error al verificar la disponibilidad de la Reservacion: fecha
+ERROR:main:Error al procesar formulario: fecha
