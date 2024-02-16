@@ -1,10 +1,10 @@
-function verificarDisponibilidad() {
-    var disponibilidad = document.getElementById('Disponibilidad').value;
+function verificarfechahora() {
+    var fechahora = document.getElementById('ReservacionDisponible').value;
 
-    // Solo verifica la disponibilidad si el campo de disponibilidad está lleno
-    if (disponibilidad) {
-        console.log(disponibilidad);
-        console.log('Enviando solicitud para verificar disponibilidad...');
+    // Solo verifica la disponibilidad si el campo de fecha y hora estan llenos
+    if (fechahora) {
+        console.log(fechahora);
+        console.log('Enviando solicitud para verificar Reservacion Disponible...');
 
         fetch('/entrenamiento_disponible', {
             method: 'POST',
@@ -12,7 +12,7 @@ function verificarDisponibilidad() {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams({
-                'disponibilidad': disponibilidad
+                'ReservacionDisponible': fechahora
             })
         })
         .then(response => response.json())

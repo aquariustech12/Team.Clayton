@@ -2,16 +2,17 @@ import logging
 from fastapi import FastAPI, HTTPException, Form, Request, WebSocket, Depends, status
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, Boolean, DateTime, select, update
+from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, Boolean, Date, Time, select, update
 from sqlalchemy.orm import Session
 from fastapi.responses import HTMLResponse, JSONResponse
 from datetime import datetime
+from sqlalchemy.sql import and_
 import pywhatkit
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(filename='error.log', level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
@@ -28,8 +29,8 @@ clientes = Table(
     Column('Telefono', String),
     Column('ObjetivoFitness', String),
     Column('Disponibilidad', String),
-    Column('Fecha', DateTime),
-    Column('Hora', DateTime),
+    Column('Fecha', Date),
+    Column('Hora', Time),
     Column('InformacionSalud', String),
     Column('PreferenciasDieteticas', String),
     Column('CorreoElectronico', String)
@@ -37,9 +38,15 @@ clientes = Table(
 Reservaciones = Table(
     'Reservaciones', metadata,
     Column('id', Integer, primary_key=True),
-    Column('Disponibilidad', String),  # Cambiado de DateTime a texto
-    Column('Fecha', DateTime),
-    Column('Hora', DateTime)
+    Column('NombreCompleto', String),
+    Column('Telefono', String),
+    Column('ObjetivoFitness', String),
+    Column('Disponibilidad', String),
+    Column('Fecha', Date),
+    Column('Hora', Time),
+    Column('InformacionSalud', String),
+    Column('PreferenciasDieteticas', String),
+    Column('CorreoElectronico', String)
 )
 coach = Table(
     'coach', metadata,
@@ -72,20 +79,21 @@ async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/reservacion_disponible")
-async def reservacion_disponible_post(fecha: str = Form(...), hora: str = Form(...)):
+async def reservacion_disponible_post(Fecha: str = Form(...), Hora: str = Form(...)):
     try:
-        # Convertir la cadena de texto de la fecha y la hora a un objeto datetime
-        disponibilidad_reservacion = datetime.strptime(fecha + ' ' + hora, "%Y-%m-%d %H:%M")
-
+        fecha_formateada = datetime.strptime(Fecha, "%Y-%m-%d").date()
+        hora_formateada = datetime.strptime(Hora, "%H:%M").time()
         db = Session(bind=engine)
-        reservacion_disponible = db.execute(select(Reservaciones).where(Reservaciones.c.fecha == disponibilidad_reservacion)).first()
+        Reservacion = db.execute(select(Reservaciones).where(and_(Reservaciones.c.fecha == fecha_formateada, Reservaciones.c.hora == hora_formateada))).first()
 
-        if reservacion_disponible is None:
-            reservacion_nueva = Reservaciones.insert().values(fecha=disponibilidad_reservacion)
-            db.execute(reservacion_nueva)
+        if Reservacion is None:
+            nueva_reservacion = Reservaciones.insert().values(fecha=fecha_formateada, hora=hora_formateada, disponible=True)
+            db.execute(nueva_reservacion)
             db.commit()
             return JSONResponse(content={"disponible": True})
-        else:
+        elif Reservacion and Reservaciones.disponible:
+            db.execute(update(Reservaciones).where(and_(Reservaciones.c.fecha == fecha_formateada, Reservaciones.c.hora == hora_formateada)).values(disponible=False))
+            db.commit()
             return JSONResponse(content={"disponible": False}, status_code=200)
 
     except Exception as e:
@@ -110,18 +118,22 @@ async def procesar_formulario(
     db = Session(bind=engine)
 
     # Convertir la cadena de texto de la fecha y la hora a un objeto datetime
-    fecha_reservacion = datetime.strptime(Fecha, "%Y-%m-%d")
-    hora_reservacion = datetime.strptime(Hora, "%H:%M").time()
-    disponibilidad_reservacion = datetime.combine(fecha_reservacion, hora_reservacion)
+    Fecha = datetime.strptime(Fecha, "%Y-%m-%d")
+    Hora = datetime.strptime(Hora, "%H:%M").time()
+    disponibilidad_reservacion = datetime.combine(Fecha, Hora)
+
+    print(f"Fecha recibida: {Fecha}")  # Imprime la fecha recibida
+    print(f"Hora recibida: {Hora}")  # Imprime la hora recibida
+    print(f"Objeto datetime: {disponibilidad_reservacion}")  # Imprime el objeto datetime
 
     try:
         # Verificar nuevamente si la reservación está disponible antes de procesar el formulario
-        reservacion_disponible = db.execute(select(Reservaciones).where(Reservaciones.c.fecha == disponibilidad_reservacion)).first()
-        if reservacion_disponible is not None:
+        Reservacion = db.execute(select(Reservaciones).where(and_(Reservaciones.c.fecha == Fecha, Reservaciones.c.hora == Hora))).first()
+        if Reservacion is not None:
             raise HTTPException(status_code=422, detail="Lo siento, este lugar ya está reservado.")
         
         # Insertar una nueva reservación en la tabla Reservaciones
-        nueva_reservacion = Reservaciones.insert().values(fecha=disponibilidad_reservacion)
+        nueva_reservacion = Reservaciones.insert().values(Fecha=Fecha, Hora=Hora, disponible=False)
         db.execute(nueva_reservacion)
 
         # Resto del código para procesar el formulario
@@ -139,7 +151,14 @@ async def procesar_formulario(
         db.execute(nuevo_cliente)
         db.commit()
 
-
+    except HTTPException:
+        raise  # Si la excepción ya es HTTPException, la relanzamos
+    except Exception as e:
+        logger.error(f"Error al procesar formulario: {e}")
+        print(f"Fecha: {Fecha}")  # Imprime la fecha recibida
+        print(f"Hora: {Hora}")  # Imprime la hora recibida
+        print(f"disponibilidad_reservacion: {disponibilidad_reservacion}")  # Imprime el objeto datetime
+        
         # Enviar un mensaje de WhatsApp
         pywhatkit.sendwhatmsg_instantly(Telefono, "¡Reservación programada exitosamente!")
 
