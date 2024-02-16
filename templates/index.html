@@ -64,6 +64,16 @@
                         'maxTime': '20:00',
                         'step': 60 // incrementos de 60 minutos
                     });
+
+                    // Capturar los valores de fecha y hora al enviar el formulario
+                    $('#enviar').click(function() {
+                        var fechaSeleccionada = $('#Fecha').datepicker('getDate');
+                        $('#Fecha').val(fechaSeleccionada.toISOString().slice(0,10));
+
+                        var horaSeleccionada = $('#Hora').timepicker('getTime');
+                        var horaFormateada = horaSeleccionada.getHours() + ':' + horaSeleccionada.getMinutes();
+                        $('#Hora').val(horaFormateada);
+                    });
                 });
             </script>
 
@@ -98,19 +108,6 @@
             <input type="button" id="siguiente" value="Siguiente">
             <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento" style="display: none;"> <!-- Modificado para ocultarlo inicialmente -->
             <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #ffd900; color: #000000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-            <script>
-                document.getElementById('siguiente').addEventListener('click', function() {
-                    // Verificar que todos los campos del formulario están llenos
-                    // ...
-            
-                    // Mostrar el disclaimer y el botón de enviar
-                    document.getElementById('disclaimer').style.display = 'block';
-                    document.getElementById('enviar').style.display = 'inline-block';
-            
-                    // Ocultar el botón de siguiente
-                    this.style.display = 'none';
-                });
-            </script>        
         </form>
     </div>
     <script src="/static/scripts.js"></script>
