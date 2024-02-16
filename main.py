@@ -84,15 +84,15 @@ async def reservacion_disponible_post(Fecha: str = Form(...), Hora: str = Form(.
         fecha_formateada = datetime.strptime(Fecha, "%Y-%m-%d").date()
         hora_formateada = datetime.strptime(Hora, "%H:%M").time()
         db = Session(bind=engine)
-        Reservacion = db.execute(select(Reservaciones).where(and_(Reservaciones.c.fecha == fecha_formateada, Reservaciones.c.hora == hora_formateada))).first()
+        Reservacion = db.execute(select(Reservaciones).where(and_(Reservaciones.c.Fecha == fecha_formateada, Reservaciones.c.Hora == hora_formateada))).first()
 
         if Reservacion is None:
-            nueva_reservacion = Reservaciones.insert().values(fecha=fecha_formateada, hora=hora_formateada, disponible=True)
+            nueva_reservacion = Reservaciones.insert().values(Fecha=fecha_formateada, Hora=hora_formateada, disponible=True)
             db.execute(nueva_reservacion)
             db.commit()
             return JSONResponse(content={"disponible": True})
-        elif Reservacion and Reservaciones.disponible:
-            db.execute(update(Reservaciones).where(and_(Reservaciones.c.fecha == fecha_formateada, Reservaciones.c.hora == hora_formateada)).values(disponible=False))
+        elif Reservacion and Reservaciones.c.disponible:
+            db.execute(update(Reservaciones).where(and_(Reservaciones.c.Fecha == fecha_formateada, Reservaciones.c.Hora == hora_formateada)).values(disponible=False))
             db.commit()
             return JSONResponse(content={"disponible": False}, status_code=200)
 
@@ -128,7 +128,7 @@ async def procesar_formulario(
 
     try:
         # Verificar nuevamente si la reservación está disponible antes de procesar el formulario
-        Reservacion = db.execute(select(Reservaciones).where(and_(Reservaciones.c.fecha == Fecha, Reservaciones.c.hora == Hora))).first()
+        Reservacion = db.execute(select(Reservaciones).where(and_(Reservaciones.c.Fecha == Fecha, Reservaciones.c.Hora == Hora))).first()
         if Reservacion is not None:
             raise HTTPException(status_code=422, detail="Lo siento, este lugar ya está reservado.")
         
@@ -194,7 +194,7 @@ async def reservacion_del_dia(fecha: str):
     db = Session(bind=engine)
     try:
         # Usa alias 'reservaciones' para simplificar la referencia
-        reservaciones_del_dia = db.execute(select(Reservaciones).where(Reservaciones.c.fecha == fecha_formateada)).all()
+        reservaciones_del_dia = db.execute(select(Reservaciones).where(Reservaciones.c.Fecha == fecha_formateada)).all()
         reservaciones_json = [{
             'id': reserva.id,
             'NombreCompleto': reserva.NombreCompleto,
