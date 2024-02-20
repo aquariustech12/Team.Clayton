@@ -166,3 +166,30 @@ INFO:sqlalchemy.engine.Engine:[cached since 14.3s ago] ('2024-02-20', '10:00:00.
 INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Disponibilidad", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 INFO:sqlalchemy.engine.Engine:[generated in 0.00040s] ('Julian Lugo', '+526444475422', 'vida_saludable', 'mañana', '2024-02-20', '10:00:00.000000', 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
 INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+ERROR:fastapi:Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00041s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.001877s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
