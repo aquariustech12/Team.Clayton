@@ -17,19 +17,19 @@
             }
             const tablareservaciones = document.getElementById('tablareservaciones').getElementsByTagName('tbody')[0];
             tablareservaciones.innerHTML = '';
-            for (let reserva of reservaciones_del_dia) {
+            for (let Reservaciones of reservaciones_del_dia) {
                 console.log(reserva);  // Imprime cada reservacion
                 let filaNueva = tablareservaciones.insertRow();
-                if (reserva.fecha_hora_reservacion) {
-                    filaNueva.insertCell().innerText = reserva.NombreCompleto;
-                    filaNueva.insertCell().innerText = reserva.Telefono;
-                    filaNueva.insertCell().innerText = reserva.ObjetivoFitness;
-                    filaNueva.insertCell().innerText = reserva.Disponibilidad;
-                    filaNueva.insertCell().innerText = reserva.Fecha;
-                    filaNueva.insertCell().innerText = reserva.Hora;
-                    filaNueva.insertCell().innerText = reserva.InformacionSalud;
-                    filaNueva.insertCell().innerText = reserva.PreferenciasDieteticas;
-                    filaNueva.insertCell().innerText = reserva.CorreoElectronico;
+                if (Reservaciones.fecha_hora_reservacion) {
+                    filaNueva.insertCell().innerText = Reservaciones.NombreCompleto;
+                    filaNueva.insertCell().innerText = Reservaciones.Telefono;
+                    filaNueva.insertCell().innerText = Reservaciones.ObjetivoFitness;
+                    filaNueva.insertCell().innerText = Reservaciones.Disponibilidad;
+                    filaNueva.insertCell().innerText = Reservaciones.Fecha;
+                    filaNueva.insertCell().innerText = Reservaciones.Hora;
+                    filaNueva.insertCell().innerText = Reservaciones.InformacionSalud;
+                    filaNueva.insertCell().innerText = Reservaciones.PreferenciasDieteticas;
+                    filaNueva.insertCell().innerText = Reservaciones.CorreoElectronico;
                 }
             }
         }

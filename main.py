@@ -61,7 +61,7 @@ metadata.create_all(engine)
 async def startup_event():
     db = Session(bind=engine)
     try:
-        # Añadir coach a la base de datos
+        # Añadir coaches a la base de datos
         coach1 = coach.insert().values(NombreCompleto='Valeria Clayton', Telefono='+526441456020', CorreoElectronico='teamclayton26@gmail.com')
         coach2 = coach.insert().values(NombreCompleto='Julian Lugo', Telefono='+526444475422', CorreoElectronico='jlugog1274@gmail.com')
 
@@ -87,15 +87,17 @@ async def reservacion_disponible_post(Fecha: str = Form(...), Hora: str = Form(.
         Reservacion = db.execute(select(Reservaciones).where(and_(Reservaciones.c.Fecha == fecha_formateada, Reservaciones.c.Hora == hora_formateada))).first()
 
         if Reservacion is None:
-            nueva_reservacion = Reservaciones.insert().values(Fecha=fecha_formateada, Hora=hora_formateada, disponible=True)
+            nueva_reservacion = Reservaciones.insert().values(Fecha=fecha_formateada, Hora=hora_formateada)
             db.execute(nueva_reservacion)
             db.commit()
-            return JSONResponse(content={"disponible": True})
-        elif Reservacion and Reservaciones.c.disponible:
-            db.execute(update(Reservaciones).where(and_(Reservaciones.c.Fecha == fecha_formateada, Reservaciones.c.Hora == hora_formateada)).values(disponible=False))
+            return JSONResponse(content={"Fecha": fecha_formateada, "Hora": hora_formateada, "Reservado": True})
+        elif Reservacion and Reservaciones:
+            db.execute(update(Reservaciones).where(and_(Reservaciones.c.Fecha == fecha_formateada, Reservaciones.c.Hora == hora_formateada)))
             db.commit()
-            return JSONResponse(content={"disponible": False}, status_code=200)
-
+            return JSONResponse(content={"Fecha": fecha_formateada, "Hora": hora_formateada, "Reservado": False})
+        else:
+            return JSONResponse(content={"Fecha": fecha_formateada, "Hora": hora_formateada, "Reservado": False}, status_code=200)
+    
     except Exception as e:
         logger.error(f"Error al verificar la disponibilidad de la Reservacion: {e}")
         raise HTTPException(status_code=500, detail="Error al verificar la disponibilidad de la Reservacion")
@@ -112,28 +114,29 @@ async def procesar_formulario(
     Fecha: str = Form(...),
     Hora: str = Form(...),
     InformacionSalud: str = Form(...),
-    PreferenciasDieteticas: str = Form (...),
+    PreferenciasDieteticas: str = Form(...),
     CorreoElectronico: str = Form(...)
 ):
     db = Session(bind=engine)
 
-    # Convertir la cadena de texto de la fecha y la hora a un objeto datetime
-    Fecha = datetime.strptime(Fecha, "%Y-%m-%d")
-    Hora = datetime.strptime(Hora, "%H:%M").time()
-    disponibilidad_reservacion = datetime.combine(Fecha, Hora)
-
-    print(f"Fecha recibida: {Fecha}")  # Imprime la fecha recibida
-    print(f"Hora recibida: {Hora}")  # Imprime la hora recibida
-    print(f"Objeto datetime: {disponibilidad_reservacion}")  # Imprime el objeto datetime
-
     try:
+        # Convertir la cadena de texto de la fecha y la hora a un objeto datetime
+        Fecha = datetime.strptime(Fecha, "%Y-%m-%d")
+        Hora = datetime.strptime(Hora, "%H:%M").time()
+        disponibilidad_reservacion = "mañana" if Hora.hour < 12 else "tarde"
+
+        print(f"Fecha recibida: {Fecha}")  # Imprime la fecha recibida
+        print(f"Hora recibida: {Hora}")  # Imprime la hora recibida
+        print(f"Objeto datetime: {disponibilidad_reservacion}")  # Imprime el objeto datetime
+
         # Verificar nuevamente si la reservación está disponible antes de procesar el formulario
+        db = Session(bind=engine)
         Reservacion = db.execute(select(Reservaciones).where(and_(Reservaciones.c.Fecha == Fecha, Reservaciones.c.Hora == Hora))).first()
         if Reservacion is not None:
             raise HTTPException(status_code=422, detail="Lo siento, este lugar ya está reservado.")
         
         # Insertar una nueva reservación en la tabla Reservaciones
-        nueva_reservacion = Reservaciones.insert().values(Fecha=Fecha, Hora=Hora, disponible=False)
+        nueva_reservacion = Reservaciones.insert().values(Fecha=Fecha, Hora=Hora)
         db.execute(nueva_reservacion)
 
         # Resto del código para procesar el formulario
@@ -150,7 +153,7 @@ async def procesar_formulario(
         )
         db.execute(nuevo_cliente)
         db.commit()
-
+        
     except HTTPException:
         raise  # Si la excepción ya es HTTPException, la relanzamos
     except Exception as e:
@@ -160,7 +163,8 @@ async def procesar_formulario(
         print(f"disponibilidad_reservacion: {disponibilidad_reservacion}")  # Imprime el objeto datetime
         
         # Enviar un mensaje de WhatsApp
-        pywhatkit.sendwhatmsg_instantly(Telefono, "¡Reservación programada exitosamente!")
+        mensaje_whatsapp = f"¡Reservación programada para el {Fecha} a las {Hora} exitosamente!"
+        pywhatkit.sendwhatmsg_instantly(Telefono, mensaje_whatsapp)
 
         # Enviar un correo electrónico
         msg = MIMEMultipart()
@@ -178,17 +182,11 @@ async def procesar_formulario(
         mailserver.sendmail('teamclayton26@gmail.com', CorreoElectronico, msg.as_string())
         mailserver.quit()
 
-    except HTTPException:
-        raise  # Si la excepción ya es HTTPException, la relanzamos
-    except Exception as e:
-        logger.error(f"Error al procesar formulario: {e}")
-        raise HTTPException(status_code=500, detail="Error al procesar formulario")
     finally:
         db.close()
-
     return templates.TemplateResponse("confirmacion.html", {"request": request, "message": "¡Datos procesados exitosamente!"})
 
-@app.get("/reservacion_del_dia/{fecha}")
+@app.get("/reservacion_del_dia/{Fecha}")
 async def reservacion_del_dia(fecha: str):
     fecha_formateada = datetime.strptime(fecha, "%Y-%m-%d").date()
     db = Session(bind=engine)
@@ -196,17 +194,17 @@ async def reservacion_del_dia(fecha: str):
         # Usa alias 'reservaciones' para simplificar la referencia
         reservaciones_del_dia = db.execute(select(Reservaciones).where(Reservaciones.c.Fecha == fecha_formateada)).all()
         reservaciones_json = [{
-            'id': reserva.id,
-            'NombreCompleto': reserva.NombreCompleto,
-            'Telefono': reserva.Telefono,
-            'ObjetivoFitness': reserva.ObjetivoFitness,
-            'Disponibilidad': reserva.Disponibilidad,
-            'Fecha': reserva.Fecha,
-            'Hora': reserva.Hora,
-            'InformacionSalud': reserva.InformacionSalud,
-            'PreferenciasDieteticas': reserva.PreferenciasDieteticas,
-            'CorreoElectronico': reserva.CorreoElectronico
-        } for reserva in reservaciones_del_dia]
+            'id': Reservaciones.id,
+            'NombreCompleto': Reservaciones.NombreCompleto,
+            'Telefono': Reservaciones.Telefono,
+            'ObjetivoFitness': Reservaciones.ObjetivoFitness,
+            'Disponibilidad': Reservaciones.Disponibilidad,
+            'Fecha': Reservaciones.Fecha,
+            'Hora': Reservaciones.Hora,
+            'InformacionSalud': Reservaciones.InformacionSalud,
+            'PreferenciasDieteticas': Reservaciones.PreferenciasDieteticas,
+            'CorreoElectronico': Reservaciones.CorreoElectronico
+        } for Reservaciones in reservaciones_del_dia]
         return JSONResponse(content=reservaciones_json)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

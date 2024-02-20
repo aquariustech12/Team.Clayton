@@ -27,7 +27,7 @@ CREATE TABLE clientes (
 )
 
 
-INFO:sqlalchemy.engine.Engine:[no key 0.00010s] ()
+INFO:sqlalchemy.engine.Engine:[no key 0.00017s] ()
 INFO:sqlalchemy.engine.Engine:
 CREATE TABLE "Reservaciones" (
 	id INTEGER NOT NULL, 
@@ -44,7 +44,91 @@ CREATE TABLE "Reservaciones" (
 )
 
 
-INFO:sqlalchemy.engine.Engine:[no key 0.00015s] ()
+INFO:sqlalchemy.engine.Engine:[no key 0.00016s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE coach (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00014s] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00014s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.000706s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Disponibilidad", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00020s] ('2024-02-20', '10:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("Fecha", "Hora") VALUES (?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00012s] ('2024-02-20', '10:00:00.000000')
+INFO:sqlalchemy.engine.Engine:COMMIT
+ERROR:main:Error al verificar la disponibilidad de la Reservacion: Object of type date is not JSON serializable
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Disponibilidad", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00024s] ('2024-02-20 00:00:00.000000', '10:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("Fecha", "Hora") VALUES (?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 11.1s ago] ('2024-02-20', '10:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Disponibilidad", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00039s] ('Julian Lugo', '+526444475422', 'vida_saludable', 'mañana', '2024-02-20', '10:00:00.000000', 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE clientes (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Disponibilidad" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00016s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE "Reservaciones" (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Disponibilidad" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00017s] ()
 INFO:sqlalchemy.engine.Engine:
 CREATE TABLE coach (
 	id INTEGER NOT NULL, 
@@ -59,386 +143,26 @@ INFO:sqlalchemy.engine.Engine:[no key 0.00016s] ()
 INFO:sqlalchemy.engine.Engine:COMMIT
 INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
 INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00023s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:[generated in 0.00027s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
 INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.0009613s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:[cached since 0.000894s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
 INFO:sqlalchemy.engine.Engine:COMMIT
 INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
 INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Disponibilidad", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
 FROM "Reservaciones" 
 WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
-INFO:sqlalchemy.engine.Engine:[generated in 0.00022s] ('2024-02-16 00:00:00.000000', '10:00:00.000000')
-ERROR:main:Error al procesar formulario: Unconsumed column names: disponible
-INFO:sqlalchemy.engine.Engine:ROLLBACK
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Disponibilidad", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
-FROM "Reservaciones" 
-
-WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
-INFO:sqlalchemy.engine.Engine:[cached since 634.2s ago] ('2024-02-16 00:00:00.000000', '16:00:00.000000')
-ERROR:main:Error al procesar formulario: Unconsumed column names: disponible
-INFO:sqlalchemy.engine.Engine:ROLLBACK
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engi
-ne:PRAGMA main.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:[generated in 0.00127s] ('2024-02-20', '10:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("Fecha", "Hora") VALUES (?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00110s] ('2024-02-20', '10:00:00.000000')
 INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00014s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.0006551s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
-INFO:sqlalchemy.engine.Engine:COMMIT
-ERROR:main:Error al procesar formulario: fecha
-ERROR:main:Error al verificar la disponibilidad de la Reservacion: fecha
-ERROR:main:Error al procesar formulario: fecha
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE clientes (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"ObjetivoFitness" VARCHAR, 
-	"Disponibilidad" VARCHAR, 
-	"Fecha" DATE, 
-	"Hora" TIME, 
-	"InformacionSalud" VARCHAR, 
-	"PreferenciasDieteticas" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00009s] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE "Reservaciones" (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"ObjetivoFitness" VARCHAR, 
-	"Disponibilidad" VARCHAR, 
-	"Fecha" DATE, 
-	"Hora" TIME, 
-	"InformacionSalud" VARCHAR, 
-	"PreferenciasDieteticas" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00015s] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE coach (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00015s] ()
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.0006822s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
-INFO:sqlalchemy.engine.Engine:COMMIT
-ERROR:main:Error al verificar la disponibilidad de la Reservacion: fecha
-ERROR:main:Error al procesar formulario: fecha
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00013s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.0008229s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
-INFO:sqlalchemy.engine.Engine:COMMIT
+ERROR:main:Error al verificar la disponibilidad de la Reservacion: Object of type date is not JSON serializable
 INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
 INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Disponibilidad", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
 FROM "Reservaciones" 
 WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
-INFO:sqlalchemy.engine.Engine:[generated in 0.00018s] ('2024-02-16', '10:00:00.000000')
-ERROR:main:Error al verificar la disponibilidad de la Reservacion: Unconsumed column names: disponible
-INFO:sqlalchemy.engine.Engine:ROLLBACK
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Disponibilidad", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
-FROM "Reservaciones" 
-WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
-INFO:sqlalchemy.engine.Engine:[generated in 0.00022s] ('2024-02-16 00:00:00.000000', '10:00:00.000000')
-ERROR:main:Error al procesar formulario: Unconsumed column names: disponible
-INFO:sqlalchemy.engine.Engine:ROLLBACK
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE clientes (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"ObjetivoFitness" VARCHAR, 
-	"Disponibilidad" VARCHAR, 
-	"Fecha" DATE, 
-	"Hora" TIME, 
-	"InformacionSalud" VARCHAR, 
-	"PreferenciasDieteticas" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00009s] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE "Reservaciones" (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"ObjetivoFitness" VARCHAR, 
-	"Disponibilidad" VARCHAR, 
-	"Fecha" DATE, 
-	"Hora" TIME, 
-	"InformacionSalud" VARCHAR, 
-	"PreferenciasDieteticas" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00013s] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE coach (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00017s] ()
+INFO:sqlalchemy.engine.Engine:[generated in 0.00105s] ('2024-02-20 00:00:00.000000', '10:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("Fecha", "Hora") VALUES (?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 14.3s ago] ('2024-02-20', '10:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Disponibilidad", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00040s] ('Julian Lugo', '+526444475422', 'vida_saludable', 'mañana', '2024-02-20', '10:00:00.000000', 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
 INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00017s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.0007123s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00025s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.0007825s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE clientes (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"ObjetivoFitness" VARCHAR, 
-	"Disponibilidad" VARCHAR, 
-	"Fecha" DATE, 
-	"Hora" TIME, 
-	"InformacionSalud" VARCHAR, 
-	"PreferenciasDieteticas" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00012s] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE "Reservaciones" (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"ObjetivoFitness" VARCHAR, 
-	"Disponibilidad" BOOLEAN, 
-	"Fecha" DATE, 
-	"Hora" TIME, 
-	"InformacionSalud" VARCHAR, 
-	"PreferenciasDieteticas" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00015s] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE coach (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00014s] ()
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00014s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.000592s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00018s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.0007169s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.000713s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("clientes")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("Reservaciones")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("coach")
-INFO:sqlalchemy.engine.Engine:[raw sql] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE clientes (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"ObjetivoFitness" VARCHAR, 
-	"Disponibilidad" VARCHAR, 
-	"Fecha" DATE, 
-	"Hora" TIME, 
-	"InformacionSalud" VARCHAR, 
-	"PreferenciasDieteticas" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00010s] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE "Reservaciones" (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"ObjetivoFitness" VARCHAR, 
-	"Disponibilidad" VARCHAR, 
-	"Fecha" DATE, 
-	"Hora" TIME, 
-	"InformacionSalud" VARCHAR, 
-	"PreferenciasDieteticas" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00014s] ()
-INFO:sqlalchemy.engine.Engine:
-CREATE TABLE coach (
-	id INTEGER NOT NULL, 
-	"NombreCompleto" VARCHAR, 
-	"Telefono" VARCHAR, 
-	"CorreoElectronico" VARCHAR, 
-	PRIMARY KEY (id)
-)
-
-
-INFO:sqlalchemy.engine.Engine:[no key 0.00019s] ()
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[generated in 0.00013s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
-INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
-INFO:sqlalchemy.engine.Engine:[cached since 0.0007696s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
-INFO:sqlalchemy.engine.Engine:COMMIT
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Disponibilidad", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
-FROM "Reservaciones" 
-WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
-INFO:sqlalchemy.engine.Engine:[generated in 0.00022s] ('2024-02-16', '09:00:00.000000')
-ERROR:main:Error al verificar la disponibilidad de la Reservacion: Unconsumed column names: disponible
-INFO:sqlalchemy.engine.Engine:ROLLBACK
-INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
-INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Disponibilidad", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
-FROM "Reservaciones" 
-WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
-INFO:sqlalchemy.engine.Engine:[generated in 0.00033s] ('2024-02-16 00:00:00.000000', '09:00:00.000000')
-ERROR:main:Error al procesar formulario: Unconsumed column names: disponible
-INFO:sqlalchemy.engine.Engine:ROLLBACK
