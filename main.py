@@ -116,8 +116,8 @@ async def procesar_formulario(
     db = Session(bind=engine)
 
     # Convertir la cadena de texto de la fecha y la hora a un objeto datetime
-    Fecha = datetime.strptime(Fecha, "%Y-%m-%d").Fecha()
-    Hora = datetime.strptime(Hora, "%H:%M").Hora()
+    Fecha = datetime.strptime(Fecha, "%Y-%m-%d").date()
+    Hora = datetime.strptime(Hora, "%H:%M").time()
     
     print(f"Fecha recibida: {Fecha}")  # Imprime la fecha recibida
     print(f"Hora recibida: {Hora}")  # Imprime la hora recibida
