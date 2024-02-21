@@ -130,7 +130,7 @@ async def procesar_formulario(
             raise HTTPException(status_code=422, detail="Lo siento, este lugar ya está reservado.")
         
         # Insertamos una nueva reservación en la tabla Reservaciones
-        nueva_reservacion = Reservaciones.insert().values(Fecha=Fecha, Hora=Hora, Reservado=False)
+        nueva_reservacion = Reservaciones.insert().values(NombreCompleto=NombreCompleto, Telefono=Telefono, ObjetivoFitness=ObjetivoFitness, Fecha=Fecha, Hora=Hora, Reservado=False, InformacionSalud=InformacionSalud, PreferenciasDieteticas=PreferenciasDieteticas, CorreoElectronico=CorreoElectronico)
         db.execute(nueva_reservacion)
 
         # Resto del código para procesar el formulario
