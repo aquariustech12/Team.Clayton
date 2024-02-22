@@ -96,10 +96,34 @@
             
             <input type="button" id="disclaimer" value="Términos y Condiciones" required onclick="openDisclaimer(this.value)">
             
-            <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento">
+            <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento" style="display: none;">
             <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #ffd900; color: #000000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
         </form>
     </div>
+    ...
+
+<script>
+    
+function habilitarBotonReservar() {
+    var botonEnviar = document.getElementById('enviar');
+    var Consentimiento = document.getElementById('Consentimiento');
+    if (Consentimiento.checked) {
+        // Si el checkbox está marcado, muestra el botón de reserva
+        botonEnviar.style.display = 'block';
+    } else {
+        // Si el checkbox no está marcado, oculta el botón de reserva
+        botonEnviar.style.display = 'none';
+    }
+}
+// Llamar a la función "habilitarBotonReservar" al cargar la página
+window.onload = function() {
+    habilitarBotonReservar();
+};
+</script>
+
+</body>
+</html>
+
     <script src="/static/scripts.js"></script>
 </body>
 </html>

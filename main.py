@@ -182,26 +182,46 @@ async def procesar_formulario(
 
 @app.get("/reservaciones_del_dia/{Fecha}")
 async def reservaciones_del_dia(Fecha: str):
-    fecha_formateada = datetime.strptime(Fecha, "%Y-%m-%d").date()
     db = Session(bind=engine)
+    """
+    Obtiene las reservas del día.
+
+    Args:
+        Fecha (str): Fecha en formato YYYY-MM-DD.
+
+    Returns:
+        JSONResponse: Lista de diccionarios con información de las reservas.
+    """
     try:
+        fecha_formateada = datetime.strptime(Fecha, "%Y-%m-%d").date()
+
         # Usa alias 'reservaciones' para simplificar la referencia
         reservaciones_del_dia = db.execute(select(Reservaciones).where(Reservaciones.c.Fecha >= fecha_formateada)).all()
+
         reservaciones_json = [{
-            'id': Reservacion.id,
-            'NombreCompleto': Reservacion.NombreCompleto,
-            'Telefono': Reservacion.Telefono,
-            'ObjetivoFitness': Reservacion.ObjetivoFitness,
-            'Reservado': Reservacion.Reservado,
-            'Fecha': Reservacion.Fecha.isoformat() if Reservacion.Fecha else None,
-            'Hora': Reservaciones.Hora.isoformat() if Reservacion.Hora else None,
-            'InformacionSalud': Reservacion.InformacionSalud,
-            'PreferenciasDieteticas': Reservacion.PreferenciasDieteticas,
-            'CorreoElectronico': Reservacion.CorreoElectronico
-        } for Reservacion in reservaciones_del_dia]
+                "id": Reservacion.id,
+                "NombreCompleto": Reservacion.NombreCompleto,
+                "Telefono": Reservacion.Telefono,
+                "ObjetivoFitness": Reservacion.ObjetivoFitness,
+                "Reservado": Reservacion.Reservado,
+                "Fecha": Reservacion.Fecha.isoformat() if Reservacion.Fecha else None,
+                "Hora": Reservacion.Hora.isoformat() if Reservacion.Hora else None,
+                "InformacionSalud": Reservacion.InformacionSalud,
+                "PreferenciasDieteticas": Reservacion.PreferenciasDieteticas,
+                "CorreoElectronico": Reservacion.CorreoElectronico,
+            }
+            for Reservacion in reservaciones_del_dia ]
+
         return JSONResponse(content=reservaciones_json)
+
+    except ValueError as e:
+        logger.error(f"Error al convertir la fecha: {e}")
+        raise HTTPException(status_code=400, detail="Formato de fecha no válido")
+
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error al obtener las reservas del día: {e}")
+        raise HTTPException(status_code=500, detail="Error al obtener las reservas del día")
+
     finally:
         db.close()
 

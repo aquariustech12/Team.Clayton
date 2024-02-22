@@ -28,18 +28,18 @@
         window.onload = async function() {
             const Fecha = new Date().toISOString().split('T')[0];
             const response = await fetch(`/reservaciones_del_dia/${Fecha}`);
-            const reservaciones_del_dia = await response.json();
-            console.log(reservaciones_del_dia);  // Imprime los datos recibidos
-            if (!Array.isArray(reservaciones_del_dia)) {
-                console.error('La respuesta de la API no es un array:', reservaciones_del_dia);
+            const Reservaciones = await response.json();
+            console.log(Reservaciones);  // Imprime los datos recibidos
+            if (!Array.isArray(Reservaciones)) {
+                console.error('La respuesta de la API no es un array:', Reservaciones);
                 return;
             }
             const tablareservaciones = document.getElementById('tablareservaciones').getElementsByTagName('tbody')[0];
             tablareservaciones.innerHTML = '';
-            for (let Reservacion of reservaciones_del_dia) {
+            for (let Reservacion of Reservaciones) {
                 console.log(Reservacion);  // Imprime cada reservacion
                 let filaNueva = tablareservaciones.insertRow();
-                if (Reservaciones.Fecha) {
+                if (Reservacion.Fecha) {
                     filaNueva.insertCell().innerText = Reservacion.NombreCompleto;
                     filaNueva.insertCell().innerText = Reservacion.Telefono;
                     filaNueva.insertCell().innerText = Reservacion.ObjetivoFitness;

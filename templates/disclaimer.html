@@ -19,23 +19,24 @@
             Entiendo que es mi responsabilidad seguir las instrucciones y recomendaciones proporcionadas por el equipo. Si tengo alguna pregunta o preocupación, me pondré en contacto con el equipo para obtener aclaraciones.
             
             Acepto los términos y condiciones del servicio de entrenamiento personal.</p>
-            <input type="hidden" id="fileDownloadToken" name="fileDownloadToken">
             <div style="text-align: center; color: #1880C0;">
                 <label for="Consentimiento">
-                    <input type="checkbox" id="Consentimiento" name="Consentimiento" required>
+                    <input type="checkbox" id="Consentimiento" name="Consentimiento" onchange="aceptarTyC()" required>
                 Acepto los términos y condiciones del servicio.
                 </label>
             </div>    
         </form>
-        <script>
-        document.getElementById('Consentimiento').addEventListener('change', function() {
-            if (this.checked) {
+    <script>
+    function aceptarTyC() {
+            if (document.getElementById('Consentimiento').checked) {
                 // Cerrar la ventana actual
                 window.close();
-                // Redirigir al usuario a la página principal
-                window.location.href = "/templates/index.html";
+                // Habilitar el botón "Reservar Entrenamiento" en la ventana principal
+                if (window.opener) {
+                    window.opener.document.getElementById('enviar').style.display = 'inline-block';
+                }
             }
-        });
-        </script>
+        }
+    </script>
     </body>
     </html>
