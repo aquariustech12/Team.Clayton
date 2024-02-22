@@ -15,7 +15,6 @@
         function openDisclaimer() {
             window.open('/disclaimer', '_blank');
         }
-    
         // Agregar evento de clic al botón
         document.getElementById('disclaimer').addEventListener('click', openDisclaimer);
     </script>
@@ -97,7 +96,7 @@
             
             <input type="button" id="disclaimer" value="Términos y Condiciones" required onclick="openDisclaimer(this.value)">
             
-            <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento" style="display: none;"> <!-- Modificado para ocultarlo inicialmente -->
+            <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento">
             <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #ffd900; color: #000000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
         </form>
     </div>

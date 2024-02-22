@@ -393,3 +393,436 @@ INFO:sqlalchemy.engine.Engine:[generated in 0.00022s] ('Valeria Clayton', '+5264
 INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
 INFO:sqlalchemy.engine.Engine:[cached since 0.0007683s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
 INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00021s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.000813s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00019s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0007538s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00039s] ('2024-02-27', '12:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "Reservado", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00044s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-27', '12:00:00.000000', 0, 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00035s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-27', '12:00:00.000000', 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+ERROR:main:Error al procesar formulario: 'datetime.date' object has no attribute 'Date'
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00016s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.000739s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0006103s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00029s] ('2024-02-27', '12:00:00.000000')
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 13.79s ago] ('2024-02-28', '12:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "Reservado", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00023s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-28', '12:00:00.000000', 0, 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00024s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-28', '12:00:00.000000', 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+ERROR:main:Error al procesar formulario: unsupported operand type(s) for -: 'datetime.date' and 'int'
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00020s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0008083s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00021s] ('2024-02-28', '12:00:00.000000')
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 8.876s ago] ('2024-02-28', '13:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "Reservado", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00022s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-28', '13:00:00.000000', 0, 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00042s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-28', '13:00:00.000000', 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+ERROR:main:Error al procesar formulario: unsupported operand type(s) for -: 'tuple' and 'int'
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00026s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0008401s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00023s] ('2024-02-28', '13:00:00.000000')
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 7.298s ago] ('2024-02-28', '14:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "Reservado", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00040s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-28', '14:00:00.000000', 0, 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00039s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-28', '14:00:00.000000', 'NINGUNA', 'NINGUNA', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00018s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0007312s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00030s] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 122.9s ago] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 125.3s ago] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 127.6s ago] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE clientes (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00009s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE "Reservaciones" (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"Reservado" BOOLEAN, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00014s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE coach (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00013s] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0006439s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00023s] ('2024-02-26', '10:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "Reservado", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00023s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-26', '10:00:00.000000', 0, 'NINGUNA', 'NINGUNA', 'marketingconsultantsmx@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00017s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-26', '10:00:00.000000', 'NINGUNA', 'NINGUNA', 'marketingconsultantsmx@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00028s] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 1805s ago] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 1847s ago] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 2664s ago] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE clientes (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00009s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE "Reservaciones" (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"Reservado" BOOLEAN, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00014s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE coach (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00013s] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00016s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0006305s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00030s] ('2024-02-22', '08:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "Reservado", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00022s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-22', '08:00:00.000000', 0, 'ninguna', 'ninguna', 'marketingconsultantsmx@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00017s] ('Julian Lugo', '+526444475422', 'vida_saludable', '2024-02-22', '08:00:00.000000', 'ninguna', 'ninguna', 'marketingconsultantsmx@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00094s] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 84.03s ago] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 111.4s ago] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00023s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0008531s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00030s] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00021s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0008506s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00031s] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 271.7s ago] ('2024-02-22',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00018s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico") VALUES (?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[cached since 0.0007161s ago] ('Julian Lugo', '+526444475422', 'jlugog1274@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT

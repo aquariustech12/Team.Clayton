@@ -147,9 +147,11 @@ async def procesar_formulario(
         db.execute(nuevo_cliente)
         db.commit()
                   
+        # Extraer la hora y los minutos
+        Hora = Hora.hour
         # Enviar un mensaje de WhatsApp
-        
-        pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", Fecha.Date, Hora.Time)
+        pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", Hora)
+
 
         # Enviar un correo electrónico
         msg = MIMEMultipart()
@@ -178,24 +180,24 @@ async def procesar_formulario(
         db.close()
     return templates.TemplateResponse("confirmacion.html", {"request": request, "message": "¡Datos procesados exitosamente!"})
 
-@app.get("/reservacion_del_dia/{Fecha}")
-async def reservacion_del_dia(fecha: str):
-    fecha_formateada = datetime.strptime(fecha, "%Y-%m-%d").date()
+@app.get("/reservaciones_del_dia/{Fecha}")
+async def reservaciones_del_dia(Fecha: str):
+    fecha_formateada = datetime.strptime(Fecha, "%Y-%m-%d").date()
     db = Session(bind=engine)
     try:
         # Usa alias 'reservaciones' para simplificar la referencia
-        reservaciones_del_dia = db.execute(select(Reservaciones).where(Reservaciones.c.Fecha == fecha_formateada)).all()
+        reservaciones_del_dia = db.execute(select(Reservaciones).where(Reservaciones.Fecha == fecha_formateada)).all()
         reservaciones_json = [{
-            'id': Reservaciones.id,
-            'NombreCompleto': Reservaciones.NombreCompleto,
-            'Telefono': Reservaciones.Telefono,
-            'ObjetivoFitness': Reservaciones.ObjetivoFitness,
-            'Fecha': Reservaciones.Fecha.isoformat() if Reservaciones.Fecha else None,
-            'Hora': Reservaciones.Hora.isoformat() if Reservaciones.Hora else None,
-            'InformacionSalud': Reservaciones.InformacionSalud,
-            'PreferenciasDieteticas': Reservaciones.PreferenciasDieteticas,
-            'CorreoElectronico': Reservaciones.CorreoElectronico
-        } for Reservaciones in reservaciones_del_dia]
+            'id': Reservacion.id,
+            'NombreCompleto': Reservacion.NombreCompleto,
+            'Telefono': Reservacion.Telefono,
+            'ObjetivoFitness': Reservacion.ObjetivoFitness,
+            'Fecha': Reservacion.Fecha.isoformat() if Reservacion.Fecha else None,
+            'Hora': Reservaciones.Hora.isoformat() if Reservacion.Hora else None,
+            'InformacionSalud': Reservacion.InformacionSalud,
+            'PreferenciasDieteticas': Reservacion.PreferenciasDieteticas,
+            'CorreoElectronico': Reservacion.CorreoElectronico
+        } for Reservacion in reservaciones_del_dia]
         return JSONResponse(content=reservaciones_json)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -209,12 +211,6 @@ async def coaches(request: Request):
 @app.get("/disclaimer", response_class=HTMLResponse)
 async def disclaimer(request: Request):
     return templates.TemplateResponse("disclaimer.html", {"request": request})
-
-@app.post("/disclaimer")
-async def generate_pdf():
-    # Aquí es donde generarías el documento PDF. 
-    # Por ahora, asumiremos que el documento ya existe y se llama "documento.pdf".
-    return FileResponse("documento.pdf", media_type="application/pdf")
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):

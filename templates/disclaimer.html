@@ -26,47 +26,16 @@
                 Acepto los términos y condiciones del servicio.
                 </label>
             </div>    
-            <input type="submit" value="Aceptar">
-    </form>
+        </form>
         <script>
-        document.getElementById('disclaimer').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var form = this;
-            var fileDownloadCheckTimer;
-            var flag = new Date().getTime().toString(); // Use the current timestamp as a unique string.
-            var cookieValue;
-            var attempts = 15; // The number of times to check for the cookie.
-    
-            function getCookie(name) {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i];
-                    var [key, value] = cookie.split('=').map(c => c.trim());
-                    if (key === name) {
-                        return value;
-                    }
-                }
-                return null;
+        document.getElementById('Consentimiento').addEventListener('change', function() {
+            if (this.checked) {
+                // Cerrar la ventana actual
+                window.close();
+                // Redirigir al usuario a la página principal
+                window.location.href = "/templates/index.html";
             }
-    
-            function checkFileDownloadComplete() {
-                cookieValue = getCookie('fileDownloadToken');
-                if (cookieValue === flag || attempts === 0) {
-                    clearInterval(fileDownloadCheckTimer);
-                    document.cookie = 'fileDownloadToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'; // Clear the cookie
-                    window.close();
-                }
-                attempts--;
-            }
-    
-            document.cookie = 'fileDownloadToken=' + flag + '; path=/;'; // Set a cookie
-            fileDownloadCheckTimer = window.setInterval(checkFileDownloadComplete, 1000); // Check for the cookie every second
-            document.getElementById('fileDownloadToken').value = flag; // Set the value of the hidden field
-            form.submit();
         });
-        if (user.status === "aceptado") {
-        document.getElementById("Reservar Entrenamiento").style.display = "block";
-        }
         </script>
-</body>
-</html>
+    </body>
+    </html>

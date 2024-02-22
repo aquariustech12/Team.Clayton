@@ -4,36 +4,6 @@
     <title>Reservaciones del día</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/coaches.css">
-    
-    <script>
-        window.onload = async function() {
-            const fecha = new Date().toISOString().split('T')[0];
-            const response = await fetch(`/reservacion_del_dia/${fecha}`);
-            const reservaciones_del_dia = await response.json();
-            console.log(reservaciones_del_dia);  // Imprime los datos recibidos
-            if (!Array.isArray(reservaciones_del_dia)) {
-                console.error('La respuesta de la API no es un array:', reservaciones_del_dia);
-                return;
-            }
-            const tablareservaciones = document.getElementById('tablareservaciones').getElementsByTagName('tbody')[0];
-            tablareservaciones.innerHTML = '';
-            for (let Reservaciones of reservaciones_del_dia) {
-                console.log(reserva);  // Imprime cada reservacion
-                let filaNueva = tablareservaciones.insertRow();
-                if (Reservaciones.fecha_hora_reservacion) {
-                    filaNueva.insertCell().innerText = Reservaciones.NombreCompleto;
-                    filaNueva.insertCell().innerText = Reservaciones.Telefono;
-                    filaNueva.insertCell().innerText = Reservaciones.ObjetivoFitness;
-                    filaNueva.insertCell().innerText = Reservaciones.Disponibilidad;
-                    filaNueva.insertCell().innerText = Reservaciones.Fecha;
-                    filaNueva.insertCell().innerText = Reservaciones.Hora;
-                    filaNueva.insertCell().innerText = Reservaciones.InformacionSalud;
-                    filaNueva.insertCell().innerText = Reservaciones.PreferenciasDieteticas;
-                    filaNueva.insertCell().innerText = Reservaciones.CorreoElectronico;
-                }
-            }
-        }
-    </script>
 </head>
 <body>
     <h1>Reservaciones del Día</h1>
@@ -54,5 +24,34 @@
         <tbody>
         </tbody>
     </table>
+    <script>
+        window.onload = async function() {
+            const Fecha = new Date().toISOString().split('T')[0];
+            const response = await fetch(`/reservaciones_del_dia/${Fecha}`);
+            const reservaciones_del_dia = await response.json();
+            console.log(reservaciones_del_dia);  // Imprime los datos recibidos
+            if (!Array.isArray(reservaciones_del_dia)) {
+                console.error('La respuesta de la API no es un array:', reservaciones_del_dia);
+                return;
+            }
+            const tablareservaciones = document.getElementById('tablareservaciones').getElementsByTagName('tbody')[0];
+            tablareservaciones.innerHTML = '';
+            for (let Reservacion of reservaciones_del_dia) {
+                console.log(Reservacion);  // Imprime cada reservacion
+                let filaNueva = tablareservaciones.insertRow();
+                if (Reservaciones.fecha_hora_reservacion) {
+                    filaNueva.insertCell().innerText = Reservacion.NombreCompleto;
+                    filaNueva.insertCell().innerText = Reservacion.Telefono;
+                    filaNueva.insertCell().innerText = Reservacion.ObjetivoFitness;
+                    filaNueva.insertCell().innerText = Reservacion.Disponibilidad;
+                    filaNueva.insertCell().innerText = Reservacion.Fecha;
+                    filaNueva.insertCell().innerText = Reservacion.Hora;
+                    filaNueva.insertCell().innerText = Reservacion.InformacionSalud;
+                    filaNueva.insertCell().innerText = Reservacion.PreferenciasDieteticas;
+                    filaNueva.insertCell().innerText = Reservacion.CorreoElectronico;
+                }
+            }
+        }
+    </script>
 </body>
 </html>
