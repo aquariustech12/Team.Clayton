@@ -4,7 +4,7 @@
     <title>Reservaciones de Entrenamiento Personal</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/estilo.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -94,13 +94,12 @@
             <label for="PreferenciasDieteticas">Preferencias Dietéticas:</label>
             <textarea id="PreferenciasDieteticas" name="PreferenciasDieteticas" placeholder="Escriba cualquier restricción dietética, alergia, o preferencia"></textarea>
             
-            <input type="button" id="disclaimer" value="Términos y Condiciones" required onclick="openDisclaimer(this.value)">
+            <input type="button" id="disclaimer" value="Términos y Condiciones" required onclick="openDisclaimer(this.value)" title="Debe aceptar los Términos y Condiciones para reservar el entrenamiento">
             
             <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento" style="display: none;">
             <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #ffd900; color: #000000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
         </form>
     </div>
-    ...
 
 <script>
     
@@ -121,9 +120,18 @@ window.onload = function() {
 };
 </script>
 
-</body>
-</html>
+<script src="/static/scripts.js"></script>
 
-    <script src="/static/scripts.js"></script>
 </body>
+
 </html>
+<footer style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: transparent; color: black; text-align: center;">
+    <p>Aviso de Privacidad | © 2024 Valeria Clayton Personal Trainer. Todos los derechos reservados.</p>
+    <div class="redes-sociales">
+        <a href="https://wa.me/tunumerodewhatsapp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" style="color: black;"></i></a>
+        <a href="https://www.facebook.com/tupagina" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook" style="color: black;"></i></a>
+        <a href="https://www.instagram.com/tuinstagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" style="color: black;"></i></a>
+        <!-- Agrega más enlaces e iconos para otras redes sociales según sea necesario -->
+    </div>
+ 
+</footer>

@@ -23,3 +23,8 @@ Time: 13:15
 Phone Number: +526444475422
 Message: ¡Cita reservada exitosamente!
 --------------------
+Date: 22/2/2024
+Time: 14:47
+Phone Number: +526444475422
+Message: ¡Cita reservada exitosamente!
+--------------------

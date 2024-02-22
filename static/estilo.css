@@ -28,7 +28,7 @@ h1 {
 }
 
 form {
-    text-align: left;
+    text-align: center;
     margin-top: 20px;
 }
 
@@ -60,4 +60,18 @@ input[type="reset"] {
 
 input[type="reset"]:hover {
     background-color: #83b300;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    text-align: center;
+}
+
+.redes-sociales {
+    margin-right: 10px; /* Agregar espacio entre los iconos de las redes sociales */
+    font-size: 24px; /* Ajustar el tamaño de los iconos */
 }
