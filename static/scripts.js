@@ -4,7 +4,7 @@ function verificarfechahora() {
 
     // Verificar que la fecha y la hora estén llenas
     if (fecha && hora) {
-        var fechahora = fecha + ' ' + hora;
+        var fecha, hora = fecha + ' ' + hora;
 
         console.log('Enviando solicitud para verificar disponibilidad de reservación...');
 
@@ -35,7 +35,7 @@ function verificarfechahora() {
     }
 }
 
-document.getElementById('siguiente').addEventListener('click', function() {
+document.getElementById('Términos y Condiciones').addEventListener('click', function() {
     // Llamar a la función verificarfechahora para verificar la disponibilidad de reservas
     verificarfechahora();
 

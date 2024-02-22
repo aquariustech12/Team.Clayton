@@ -10,6 +10,15 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css" />
+    <script>
+        // Función para abrir el disclaimer
+        function openDisclaimer() {
+            window.open('/disclaimer', '_blank');
+        }
+    
+        // Agregar evento de clic al botón
+        document.getElementById('disclaimer').addEventListener('click', openDisclaimer);
+    </script>
 </head>
 <body>
     <div class="container">
@@ -85,25 +94,9 @@
 
             <label for="PreferenciasDieteticas">Preferencias Dietéticas:</label>
             <textarea id="PreferenciasDieteticas" name="PreferenciasDieteticas" placeholder="Escriba cualquier restricción dietética, alergia, o preferencia"></textarea>
-            <div id="disclaimer" style="display: none;">
-                <h2>Términos y Condiciones del Servicio de Entrenamiento Personal</h2>
-                <p>Al marcar esta casilla, confirmo que he leído y entendido los términos y condiciones del servicio de entrenamiento personal. Entiendo que el servicio incluye entrenamiento personalizado y asesoría nutricional diseñados para ayudarme a alcanzar mis metas de salud y fitness.
-                    
-                    Entiendo que el equipo de profesionales dedicados proporcionará planes de entrenamiento y dietas personalizadas que se ajusten a mi estilo de vida y necesidades individuales. Si elijo perder peso, ganar músculo, mejorar mi rendimiento deportivo o simplemente llevar un estilo de vida más saludable, entiendo que el equipo está aquí para guiarme en cada paso del camino.
-                    
-                    Confirmo que la información que he proporcionado es precisa y completa. Entiendo que es mi responsabilidad informar al equipo de cualquier cambio en mi salud o condición física.
-                    
-                    Al aceptar el examen médico, entiendo que es un plus del servicio y que el equipo está formado por un entrenador, un médico y un nutricionista.
-                    
-                    Entiendo que es mi responsabilidad seguir las instrucciones y recomendaciones proporcionadas por el equipo. Si tengo alguna pregunta o preocupación, me pondré en contacto con el equipo para obtener aclaraciones.
-                    
-                    Acepto los términos y condiciones del servicio de entrenamiento personal.</p>
-                <label for="Consentimiento">
-                    <input type="checkbox" id="Consentimiento" name="Consentimiento" required>
-                    Acepto los términos y condiciones del servicio.
-                </label>
-            </div>
-            <input type="button" id="siguiente" value="Siguiente">
+            
+            <input type="button" id="disclaimer" value="Términos y Condiciones" required onclick="openDisclaimer(this.value)">
+            
             <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento" style="display: none;"> <!-- Modificado para ocultarlo inicialmente -->
             <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #ffd900; color: #000000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
         </form>

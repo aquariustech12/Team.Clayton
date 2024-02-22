@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, Boolean, Date, Time, select, update
 from sqlalchemy.orm import Session
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from datetime import datetime
 from sqlalchemy.sql import and_
 import pywhatkit
@@ -146,7 +146,7 @@ async def procesar_formulario(
         )
         db.execute(nuevo_cliente)
         db.commit()
-                     
+                  
         # Enviar un mensaje de WhatsApp
         
         pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", Fecha.Date, Hora.Time)
@@ -205,6 +205,16 @@ async def reservacion_del_dia(fecha: str):
 @app.get("/coaches", response_class=HTMLResponse)
 async def coaches(request: Request):
     return templates.TemplateResponse("coaches.html", {"request": request})
+
+@app.get("/disclaimer", response_class=HTMLResponse)
+async def disclaimer(request: Request):
+    return templates.TemplateResponse("disclaimer.html", {"request": request})
+
+@app.post("/disclaimer")
+async def generate_pdf():
+    # Aquí es donde generarías el documento PDF. 
+    # Por ahora, asumiremos que el documento ya existe y se llama "documento.pdf".
+    return FileResponse("documento.pdf", media_type="application/pdf")
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
