@@ -186,7 +186,7 @@ async def reservaciones_del_dia(Fecha: str):
     db = Session(bind=engine)
     try:
         # Usa alias 'reservaciones' para simplificar la referencia
-        reservaciones_del_dia = db.execute(select(Reservaciones).where(Reservaciones.Fecha == fecha_formateada)).all()
+        reservaciones_del_dia = db.execute(select(Reservaciones).where(Reservaciones.Fecha.date() == fecha_formateada))
         reservaciones_json = [{
             'id': Reservacion.id,
             'NombreCompleto': Reservacion.NombreCompleto,
