@@ -64,6 +64,9 @@
             document.getElementById('fileDownloadToken').value = flag; // Set the value of the hidden field
             form.submit();
         });
+        if (user.status === "aceptado") {
+        document.getElementById("Reservar Entrenamiento").style.display = "block";
+        }
         </script>
 </body>
 </html>
