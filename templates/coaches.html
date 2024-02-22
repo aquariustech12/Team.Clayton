@@ -39,7 +39,7 @@
             for (let Reservacion of reservaciones_del_dia) {
                 console.log(Reservacion);  // Imprime cada reservacion
                 let filaNueva = tablareservaciones.insertRow();
-                if (Reservaciones.fecha_hora_reservacion) {
+                if (Reservaciones.Fecha) {
                     filaNueva.insertCell().innerText = Reservacion.NombreCompleto;
                     filaNueva.insertCell().innerText = Reservacion.Telefono;
                     filaNueva.insertCell().innerText = Reservacion.ObjetivoFitness;
