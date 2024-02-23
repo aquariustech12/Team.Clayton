@@ -2,17 +2,22 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f4f4f4;
+    background-image: url('/static/images/vale');
+    
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-    background: url('https://source.unsplash.com/random') no-repeat center center/cover;
 }
 
 .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center; /* Para centrar horizontalmente el contenido */
+}
+
+.form-container {
     background-color: #fff;
     width: 80%;
     max-width: 500px;
@@ -20,6 +25,7 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: center; 
 }
 
 h1 {
@@ -28,7 +34,7 @@ h1 {
 }
 
 form {
-    text-align: center;
+    text-align: left;
     margin-top: 20px;
 }
 
@@ -61,17 +67,15 @@ input[type="reset"] {
 input[type="reset"]:hover {
     background-color: #83b300;
 }
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: transparent;
-    color: black;
-    text-align: center;
-}
 
 .redes-sociales {
     margin-right: 10px; /* Agregar espacio entre los iconos de las redes sociales */
-    font-size: 24px; /* Ajustar el tamaño de los iconos */
+    font-size: 35px; /* Ajustar el tamaño de los iconos */
+}
+
+.image1 {
+    opacity: 0.4;
+    display: block;
+    margin: 0 auto;
+    background-position: center; /* Centra la imagen horizontalmente */
 }

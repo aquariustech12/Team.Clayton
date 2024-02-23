@@ -113,6 +113,9 @@ async def procesar_formulario(
     PreferenciasDieteticas: str = Form(...),
     CorreoElectronico: str = Form(...)
 ):
+    # Verificar si el número de teléfono es válido
+    if not Telefono or Telefono == '+52':
+        raise HTTPException(status_code=400, detail="Por favor, ingresa un número de teléfono válido.")
     db = Session(bind=engine)
 
     # Convertir la cadena de texto de la fecha y la hora a un objeto datetime
@@ -183,15 +186,7 @@ async def procesar_formulario(
 @app.get("/reservaciones_del_dia/{Fecha}")
 async def reservaciones_del_dia(Fecha: str):
     db = Session(bind=engine)
-    """
-    Obtiene las reservas del día.
-
-    Args:
-        Fecha (str): Fecha en formato YYYY-MM-DD.
-
-    Returns:
-        JSONResponse: Lista de diccionarios con información de las reservas.
-    """
+    """ Obtiene las reservas del día. Args: Fecha (str): Fecha en formato YYYY-MM-DD. Returns: JSONResponse: Lista de diccionarios con información de las reservas. """
     try:
         fecha_formateada = datetime.strptime(Fecha, "%Y-%m-%d").date()
 
