@@ -1,11 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
 
-body {
-    background: url('https://source.unsplash.com/random') no-repeat center center/cover;
+html, body {
     font-family: 'Montserrat', sans-serif;
-    color: #0c0909;  /* Color del texto */
+    margin: 0;
+    padding: 0;
+    /* resto de tus estilos */
 }
-
+.logo-image {
+    position: fixed; 
+    top: 10px; 
+    left: 10px; 
+    opacity: 0.5; 
+    width: 100px;
+}
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.5;
+}
 #page-wrap {
     margin: 50px;
 }
@@ -15,9 +32,11 @@ p {
 }
 
 table { 
-    width: 100%; 
+    width: 80%; 
     border-collapse: collapse; 
     background-color: #ffffff;  /* Color de fondo de la tabla */
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+    display: table; /* Esto es necesario para que funcione margin: 0 auto; */
 }
 
 /* Zebra striping */
@@ -43,4 +62,8 @@ td, th {
 
 h1 {
     text-align: center;
+}
+.redes-sociales {
+    margin-right: 10px; /* Agregar espacio entre los iconos de las redes sociales */
+    font-size: 35px; /* Ajustar el tamaño de los iconos */
 }
