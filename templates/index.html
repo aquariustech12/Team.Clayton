@@ -21,9 +21,9 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="content">
-            <div class="form-container">
+    <div class="main-container">
+        <img src="/static/images/vale" class="background-image">
+        <div class="form-container">        
                 <h1>Reservaciones de Entrenamiento Personal</h1>
                 <form action="procesar_formulario" name="" method="POST">
                     <label for="NombreCompleto">Nombre:</label>
@@ -102,11 +102,9 @@
                     <input type="button" id="disclaimer" value="Términos y Condiciones" required onclick="openDisclaimer(this.value)" title="Debe aceptar los Términos y Condiciones para reservar el entrenamiento">
             
                     <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento" style="display: none;">
-                    <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #ffd900; color: #000000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                    <input type="reset" name="reset" id="borrar" value="Restablecer" style="background-color: #000000; color: #FFFF; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
                 </form>
-                
-            </div>
-        </div>
+        </div>                  
     </div>    
         <script>
     

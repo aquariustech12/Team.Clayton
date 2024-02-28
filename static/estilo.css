@@ -1,41 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap');
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-image: url('/static/images/vale');
-    
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-}
-
-.container {
+.main-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    text-align: center; /* Para centrar horizontalmente el contenido */
+    height: 100vh;
+    position: relative;
 }
 
-.form-container {
-    background-color: #fff;
-    width: 80%;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: center; 
+html, body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* resto de tus estilos */
 }
 
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.5;
+}
 h1 {
     text-align: center;
     color: #333;
 }
 
-form {
-    text-align: left;
-    margin-top: 20px;
+.form-container {
+    width: 80%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0px;
+    border-radius: 0px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    position: center; 
 }
 
 label, input, textarea {
@@ -45,7 +47,7 @@ label, input, textarea {
 }
 
 input[type="submit"], input[type="reset"] {
-    background-color: #007BFF;
+    background-color: #f109e6;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -56,26 +58,19 @@ input[type="submit"], input[type="reset"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #f109e6;
 }
 
 input[type="reset"] {
-    background-color: #ffd900;
+    background-color: #0000;
     color: #000000;
 }
 
 input[type="reset"]:hover {
-    background-color: #83b300;
+    background-color: #f109e6;
 }
 
 .redes-sociales {
     margin-right: 10px; /* Agregar espacio entre los iconos de las redes sociales */
     font-size: 35px; /* Ajustar el tamaño de los iconos */
-}
-
-.image1 {
-    opacity: 0.4;
-    display: block;
-    margin: 0 auto;
-    background-position: center; /* Centra la imagen horizontalmente */
 }

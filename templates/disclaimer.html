@@ -6,7 +6,9 @@
     <link rel="stylesheet" type="text/css" href="/static/estilo2.css">
 </head>
 <body>
-    <form id="disclaimer" action="/disclaimer" method="POST">
+    <div class="main-container">
+        <img src="/static/images/vale" class="background-image">
+        <form id="disclaimer" action="/disclaimer" method="POST">
         <h2 style="text-align: center;">Términos y Condiciones del Servicio de Entrenamiento Personal</h2>
         <p style="text-align: justify;">Al marcar esta casilla, confirmo que he leído y entendido los términos y condiciones del servicio de entrenamiento personal. Entiendo que el servicio incluye entrenamiento personalizado y asesoría nutricional diseñados para ayudarme a alcanzar mis metas de salud y fitness.
             
@@ -19,13 +21,14 @@
             Entiendo que es mi responsabilidad seguir las instrucciones y recomendaciones proporcionadas por el equipo. Si tengo alguna pregunta o preocupación, me pondré en contacto con el equipo para obtener aclaraciones.
             
             Acepto los términos y condiciones del servicio de entrenamiento personal.</p>
-            <div style="text-align: center; color: #1880C0;">
+            <div style="text-align: center; color: #0000;">
                 <label for="Consentimiento">
                     <input type="checkbox" id="Consentimiento" name="Consentimiento" onchange="aceptarTyC()" required>
                 Acepto los términos y condiciones del servicio.
                 </label>
             </div>    
         </form>
+    </div>    
     <script>
     function aceptarTyC() {
             if (document.getElementById('Consentimiento').checked) {
