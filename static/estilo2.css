@@ -48,3 +48,7 @@ input[type="checkbox"] {
     margin-right: 10px;
     text-align: center;
 }
+.redes-sociales {
+    margin-right: 10px; /* Agregar espacio entre los iconos de las redes sociales */
+    font-size: 35px; /* Ajustar el tamaño de los iconos */
+}
