@@ -2111,3 +2111,15 @@ FROM "Reservaciones"
 WHERE "Reservaciones"."Fecha" >= ?
 INFO:sqlalchemy.engine.Engine:[cached since 497.5s ago] ('2024-02-28',)
 INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 699.7s ago] ('2024-02-28',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 703.9s ago] ('2024-02-28',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
