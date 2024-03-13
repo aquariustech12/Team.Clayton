@@ -1,10 +1,18 @@
 import logging
-from fastapi import FastAPI, HTTPException, Form, Request, WebSocket
+import uuid
+from fastapi import FastAPI, HTTPException, Form, Request, Response, WebSocket, status
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, Boolean, Date, Time, select, update
 from sqlalchemy.orm import Session
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
+from captcha.image import ImageCaptcha
+from starlette.middleware.sessions import SessionMiddleware
+from starlette.applications import Starlette
+import random
+import string
+import base64
+from io import BytesIO
 from datetime import datetime
 from sqlalchemy.sql import and_
 #import pywhatkit
@@ -15,7 +23,40 @@ from email.mime.multipart import MIMEMultipart
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
+app = Starlette()
+app.add_middleware(SessionMiddleware, secret_key="740212")
 app = FastAPI()
+# Función para generar el texto del captcha
+def captcha_generator(size: int):
+    return ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(size))
+
+# Función para generar el captcha
+def generate_captcha():
+    captcha: str = captcha_generator(5)
+    image = ImageCaptcha()
+    data = image.generate(captcha)
+    data = base64.b64encode(data.getvalue())
+    return {"data": data, "captcha": captcha}
+
+@app.get('/start-session')
+def start_session(request: Request):
+    captcha = generate_captcha()
+    request.session["captcha"] = captcha['captcha']
+    captcha_image = captcha["data"].decode("utf-8")
+    return FileResponse(BytesIO(base64.b64decode(captcha_image)), media_type="image/png")
+
+@app.post('/contact-submission')
+def submission(
+    request: Request,
+    response: Response,
+    data: str = Form(...)
+):
+    if request.session.get("captcha", uuid.uuid4()) == data:
+        return status.HTTP_200_OK
+    else:
+        request.session["captcha"] = str(uuid.uuid4())
+        raise HTTPException(status.HTTP_403_FORBIDDEN, detail="Captcha Does not Match")
+    
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
