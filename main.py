@@ -9,8 +9,7 @@ from datetime import datetime
 from sqlalchemy.sql import and_
 import pywhatkit
 import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+from email.message import EmailMessage
 
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 logger = logging.getLogger(__name__)
@@ -149,35 +148,38 @@ async def procesar_formulario(
         )
         db.execute(nuevo_cliente)
         db.commit()
-                  
+
         # Extraer la hora y los minutos
         Hora = Hora.hour
         # Enviar un mensaje de WhatsApp
         pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", Hora)
-
-
+                  
         # Enviar un correo electrónico
-        msg = MIMEMultipart()
-        msg['From'] = 'teamclayton26@gmail.com'
-        msg['To'] = CorreoElectronico
-        msg['Subject'] = 'Confirmación de Reservación'
-        message = '¡Reservación programada exitosamente!'
-        msg.attach(MIMEText(message))
+        def email_alert(Subject, body, to,):
+            msg = EmailMessage()
+            msg.set_content(body)
+            msg['To'] = to
+            msg['Subject'] = Subject
+            
+            # Configurar el servidor SMTP
+            user = "teamclayton26@gmail.com"
+            msg['from'] = user
+            password = "beywfxlirstlutha"
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.ehlo()
+            server.login(user, password)
 
-        mailserver = smtplib.SMTP('smtp.gmail.com', 587)
-        mailserver.ehlo()
-        mailserver.starttls()
-        mailserver.ehlo()
-        mailserver.login('teamclayton26@gmail.com', 'beywfxlirstlutha')
-        mailserver.sendmail('teamclayton26@gmail.com', CorreoElectronico, msg.as_string())
-        mailserver.quit()
+            # Enviar el correo electrónico
+            server.sendmail(user, to, msg.as_string())
+            server.quit()
+
+        email_alert("Confirmación de Reservación", "¡Reservación programada exitosamente!", CorreoElectronico)
 
     except HTTPException:
         raise  # Si la excepción ya es HTTPException, la relanzamos
     except Exception as e:
-        logger.error(f"Error al procesar formulario: {e}")
-        print(f"Fecha: {Fecha}")  # Imprime la fecha recibida
-        print(f"Hora: {Hora}")  # Imprime la hora recibida
+        print(f"Error al procesar formulario: {e}")
         raise HTTPException(status_code=500, detail="Error al procesar formulario")
     finally:
         db.close()
