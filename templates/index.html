@@ -100,7 +100,13 @@
 
                     <label for="PreferenciasDieteticas">Preferencias Dietéticas:</label>
                     <textarea id="PreferenciasDieteticas" name="PreferenciasDieteticas" placeholder="Escriba cualquier restricción dietética, alergia, o preferencia"></textarea>
-            
+                    
+                    <!-- Agregar el campo para el captcha -->
+                    <img src="/captcha/" alt="captcha" id="captcha_image">
+                    <label for="captcha_input">Ingrese el código captcha:</label>
+                    <input type="text" id="captcha_input" name="captcha_input" required>
+                    <input type="hidden" id="captcha_text" name="captcha_text" value="{{ captcha_text }}">
+    
                     <input type="button" id="disclaimer" value="Términos y Condiciones" required onclick="openDisclaimer(this.value)" title="Debe aceptar los Términos y Condiciones para reservar el entrenamiento">
             
                     <input type="submit" name="enviar" id="enviar" value="Reservar Entrenamiento" style="display: none;">

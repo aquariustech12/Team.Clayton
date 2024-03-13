@@ -1,5 +1,5 @@
 import logging
-from fastapi import FastAPI, HTTPException, Form, Request, WebSocket
+from fastapi import FastAPI, HTTPException, Form, Request, WebSocket, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, Boolean, Date, Time, select, update
@@ -11,6 +11,8 @@ from sqlalchemy.sql import and_
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from captcha.image import ImageCaptcha
+from io import BytesIO
 
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 logger = logging.getLogger(__name__)
@@ -18,6 +20,27 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
+
+# Genera y retorna un captcha como una imagen en BytesIO
+def generar_captcha():
+    text = "1234"  # Puedes generar un texto aleatorio aquí si lo deseas
+    image = ImageCaptcha().generate(text)
+    captcha_image = BytesIO()
+    image.save(captcha_image, format='PNG')
+    captcha_image.seek(0)
+    return text, captcha_image
+
+# Configurar la ruta para generar el captcha
+@app.get("/captcha/")
+async def get_captcha():
+    text, captcha_image = generar_captcha()
+    return FileResponse(captcha_image, media_type='image/png')
+
+# Endpoint para mostrar el formulario con captcha
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request):
+    captcha_text, _ = generar_captcha()
+    return templates.TemplateResponse("index.html", {"request": request, "captcha_text": captcha_text})
 
 engine = create_engine('sqlite:///clientes.db', echo=True)
 metadata = MetaData()
@@ -55,6 +78,7 @@ coach = Table(
     Column('CorreoElectronico', String)
 )
 metadata.create_all(engine)
+
 @app.on_event("startup")
 async def startup_event():
     db = Session(bind=engine)
@@ -102,6 +126,14 @@ async def reservacion_disponible_post(Fecha: str = Form(...), Hora: str = Form(.
         db.close()
 
 @app.post("/procesar_formulario", response_class=HTMLResponse)
+async def procesar_formulario(
+    request: Request,
+    captcha_input: str = Form(...),
+    captcha_text: str = Form(...)
+):
+    # Verifica si el captcha ingresado es correcto
+    if captcha_input != captcha_text:
+        raise HTTPException(status_code=422, detail="Captcha incorrecto. Por favor, inténtalo de nuevo.")
 async def procesar_formulario(
     request: Request,
     NombreCompleto: str = Form(...),
