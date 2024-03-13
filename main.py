@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from datetime import datetime
 from sqlalchemy.sql import and_
-import pywhatkit
+#import pywhatkit
 import smtplib
 from email.message import EmailMessage
 
@@ -150,9 +150,9 @@ async def procesar_formulario(
         db.commit()
 
         # Extraer la hora y los minutos
-        Hora = Hora.hour
+        # Hora = Hora.hour
         # Enviar un mensaje de WhatsApp
-        pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", Hora)
+        #pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", Hora)
                   
         # Enviar un correo electrónico
         def email_alert(Subject, body, to,):
