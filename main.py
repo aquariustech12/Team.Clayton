@@ -23,9 +23,6 @@ from email.mime.multipart import MIMEMultipart
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
-app = Starlette()
-app.add_middleware(SessionMiddleware, secret_key="740212")
-app = FastAPI()
 # Función para generar el texto del captcha
 def captcha_generator(size: int):
     return ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(size))
@@ -38,12 +35,15 @@ def generate_captcha():
     data = base64.b64encode(data.getvalue())
     return {"data": data, "captcha": captcha}
 
+app = FastAPI()
+app.add_middleware(SessionMiddleware, secret_key="740212")
+
 @app.get('/start-session')
 def start_session(request: Request):
     captcha = generate_captcha()
     request.session["captcha"] = captcha['captcha']
-    captcha_image = captcha["data"].decode("utf-8")
-    return FileResponse(BytesIO(base64.b64decode(captcha_image)), media_type="image/png")
+    captcha_image = captcha["data"]
+    return Response(content=base64.b64decode(captcha_image), media_type="image/png")
 
 @app.post('/contact-submission')
 def submission(
