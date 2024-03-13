@@ -9,7 +9,8 @@ from datetime import datetime
 from sqlalchemy.sql import and_
 #import pywhatkit
 import smtplib
-from email.message import EmailMessage
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 logging.basicConfig(filename='error.log', level=logging.ERROR)
 logger = logging.getLogger(__name__)
@@ -154,27 +155,50 @@ async def procesar_formulario(
         # Enviar un mensaje de WhatsApp
         #pywhatkit.sendwhatmsg_instantly(Telefono, "¡Cita reservada exitosamente!", Hora)
                   
-        # Enviar un correo electrónico
-        def email_alert(Subject, body, to,):
-            msg = EmailMessage()
-            msg.set_content(body)
-            msg['To'] = to
-            msg['Subject'] = Subject
-            
-            # Configurar el servidor SMTP
-            user = "teamclayton26@gmail.com"
-            msg['from'] = user
-            password = "beywfxlirstlutha"
-            server = smtplib.SMTP('smtp.gmail.com', 587)
-            server.starttls()
-            server.ehlo()
-            server.login(user, password)
+        # Tus credenciales de correo electrónico
+        email = "teamclayton26@gmail.com"
+        password = "beywfxlirstlutha"
 
-            # Enviar el correo electrónico
-            server.sendmail(user, to, msg.as_string())
-            server.quit()
+        # Dirección de correo electrónico para enviar el mensaje de texto
+        sms_gateway = f"{Telefono}@itelcel.com"
 
-        email_alert("Confirmación de Reservación", "¡Reservación programada exitosamente!", CorreoElectronico)
+        # Configuración del servidor SMTP
+        smtp_server = "smtp.gmail.com"
+        smtp_port = 587
+
+        # Iniciar el servidor SMTP
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()  # Habilitar cifrado TLS
+
+        # Iniciar sesión en la cuenta de correo electrónico
+        server.login(email, password)
+
+        # Crear el mensaje para el SMS
+        msg = MIMEMultipart()
+        msg['From'] = email
+        msg['To'] = sms_gateway
+        msg['Subject'] = "Confirmación de Reservación"  # Asunto del mensaje
+        body = "¡Reservación programada exitosamente!"  # Contenido del mensaje
+        msg.attach(MIMEText(body, 'plain'))  # Adjuntar el cuerpo del mensaje
+        sms = msg.as_string()  # Convertir el mensaje a una cadena
+
+        # Enviar el mensaje de texto (SMS) a través de correo electrónico
+        server.sendmail(email, sms_gateway, sms)
+
+        # Crear el mensaje para el correo electrónico
+        msg = MIMEMultipart()
+        msg['From'] = email
+        msg['To'] = CorreoElectronico
+        msg['Subject'] = "Confirmación de Reservación"  # Asunto del mensaje
+        body = "¡Reservación programada exitosamente!"  # Contenido del mensaje
+        msg.attach(MIMEText(body, 'plain'))  # Adjuntar el cuerpo del mensaje
+        email_msg = msg.as_string()  # Convertir el mensaje a una cadena
+
+        # Enviar el correo electrónico
+        server.sendmail(email, CorreoElectronico, email_msg)
+
+        # Cerrar la conexión SMTP
+        server.quit()
 
     except HTTPException:
         raise  # Si la excepción ya es HTTPException, la relanzamos
