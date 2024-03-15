@@ -1,5 +1,8 @@
 import logging
 import uuid
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
+from fastapi import Cookie, Depends
+from passlib.context import CryptContext
 from fastapi import FastAPI, HTTPException, Form, Request, Response, WebSocket, status
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -8,12 +11,12 @@ from sqlalchemy.orm import Session
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from captcha.image import ImageCaptcha
 from starlette.middleware.sessions import SessionMiddleware
-from starlette.applications import Starlette
+from starlette.responses import RedirectResponse
 import random
 import string
 import base64
 from io import BytesIO
-from datetime import datetime
+from datetime import datetime, timedelta
 from sqlalchemy.sql import and_
 #import pywhatkit
 import smtplib
@@ -55,7 +58,7 @@ def submission(
         return status.HTTP_200_OK
     else:
         request.session["captcha"] = str(uuid.uuid4())
-        raise HTTPException(status.HTTP_403_FORBIDDEN, detail="Captcha Does not Match")
+        raise HTTPException(status.HTTP_403_FORBIDDEN, detail="Captcha no coincide")
     
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
@@ -93,25 +96,53 @@ coach = Table(
     Column('id', Integer, primary_key=True),
     Column('NombreCompleto', String),
     Column('Telefono', String),
-    Column('CorreoElectronico', String)
+    Column('CorreoElectronico', String),
+    Column('hashed_password', String)  # Nueva columna para la contraseña cifrada
 )
+security = HTTPBasic()
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
+def get_password_hash(password):
+    return pwd_context.hash(password)
+
+def authenticate_user(credentials: HTTPBasicCredentials = Depends(security)):
+    db = Session(bind=engine)
+    coach_record = db.execute(select(coach).where(coach.c.CorreoElectronico == credentials.username)).first()
+    if not coach_record:
+        raise HTTPException(status_code=400, detail="Usuario o Contraseña Inválidos")
+    if not verify_password(credentials.password, coach_record.hashed_password):
+        raise HTTPException(status_code=400, detail="Contraseña Inválida")
+    return coach_record
+
+print(get_password_hash("contraseña_prueba"))
+hashed_password = get_password_hash("contraseña_prueba")
+print(verify_password("contraseña_prueba", hashed_password))
+
 metadata.create_all(engine)
 
 @app.on_event("startup")
 async def startup_event():
     db = Session(bind=engine)
     try:
-        # Añadir coaches a la base de datos
-        coach1 = coach.insert().values(NombreCompleto='Valeria Clayton', Telefono='+526441456020', CorreoElectronico='teamclayton26@gmail.com')
-        coach2 = coach.insert().values(NombreCompleto='Julian Lugo', Telefono='+526444475422', CorreoElectronico='jlugog1274@gmail.com')
+        # Comprobar si los coaches ya existen en la base de datos
+        coach1 = db.execute(select(coach).where(coach.c.CorreoElectronico == 'teamclayton26@gmail.com')).first()
 
-        db.execute(coach1)
-        db.execute(coach2)
+        # Si no existen, añadirlos a la base de datos
+        if not coach1:
+            coach1 = coach.insert().values(NombreCompleto='Valeria Clayton', Telefono='+526441456020', CorreoElectronico='teamclayton26@gmail.com', hashed_password=get_password_hash('260802'))
+            db.execute(coach1)
+
         db.commit()
     except Exception as e:
         logger.error(f"Error al añadir coaches a la base de datos: {e}")
         raise HTTPException(status_code=500, detail="Error al añadir coaches a la base de datos")
     finally:
+        coaches = db.execute(select(coach)).all()
+        for c in coaches:
+            print(c.CorreoElectronico, verify_password("260802", c.hashed_password))
         db.close()
 
 @app.get("/", response_class=HTMLResponse)
@@ -288,8 +319,28 @@ async def reservaciones_del_dia(Fecha: str):
     finally:
         db.close()
 
+@app.get("/login", response_class=HTMLResponse)
+async def login_form(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.post("/login")
+async def login(response: Response, CorreoElectronico: str = Form(...), plain_password: str = Form(...)):
+    db = Session(bind=engine)
+    coach_record = db.execute(select(coach).where(coach.c.CorreoElectronico == CorreoElectronico)).first()
+    print(f"Registro de entrenador: {coach_record}")  # Imprimir el registro de entrenador
+    if not coach_record or not verify_password(plain_password, coach_record.hashed_password):
+        print("Usuario o Contraseña Inválidos")  # Imprimir un mensaje si el inicio de sesión falla
+        raise HTTPException(status_code=400, detail="Usuario o Contraseña Inválidos")
+    response.set_cookie(key="username", value=CorreoElectronico)  # Establecer la cookie
+    print("Cookie establecida")  # Imprimir un mensaje cuando se establece la cookie
+    return RedirectResponse(url="/coaches", status_code=303)  # Redirigir a /coaches
+
 @app.get("/coaches", response_class=HTMLResponse)
-async def coaches(request: Request):
+async def coaches(request: Request, username: str = Cookie(None)):  # Obtener la cookie
+    print(f"Username: {username}")  # Imprimir el valor de la cookie
+    if not username:
+        print("Redirigiendo al inicio de sesión")  # Imprimir un mensaje antes de redirigir
+        return RedirectResponse(url="/login")  # Redirigir al inicio de sesión si no hay cookie
     return templates.TemplateResponse("coaches.html", {"request": request})
 
 @app.get("/disclaimer", response_class=HTMLResponse)
