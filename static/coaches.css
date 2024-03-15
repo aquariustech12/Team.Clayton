@@ -63,6 +63,19 @@ td, th {
 h1 {
     text-align: center;
 }
+.button {
+    background-color: #f109e6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 10%;
+    margin-top: 20px;
+    display: block;  /* Agregar esta línea */
+    margin-left: auto;  /* Agregar esta línea */
+    margin-right: auto;  /* Agregar esta línea */
+}
 .redes-sociales {
     margin-right: 10px; /* Agregar espacio entre los iconos de las redes sociales */
     font-size: 35px; /* Ajustar el tamaño de los iconos */

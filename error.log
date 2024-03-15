@@ -4613,3 +4613,904 @@ INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Te
 FROM coach 
 WHERE coach."CorreoElectronico" = ?
 INFO:sqlalchemy.engine.Engine:[cached since 346.2s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00018s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00012s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 16.39s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00014s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00014s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 50.13s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00011s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 13.26s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE clientes (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00011s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE "Reservaciones" (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"Reservado" BOOLEAN, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00024s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE coach (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	hashed_password VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00016s] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00016s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico", hashed_password) VALUES (?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00019s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com', '$2b$12$M23QE6rwc7wZdwUucWa/e.zogolWc9greKl4U69mHOy8aj15afuhG')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00019s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 24.18s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00022s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00023s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 14.9s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00012s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 16.81s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00016s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00011s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 13.99s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA temp.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE clientes (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00011s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE "Reservaciones" (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"ObjetivoFitness" VARCHAR, 
+	"Fecha" DATE, 
+	"Hora" TIME, 
+	"Reservado" BOOLEAN, 
+	"InformacionSalud" VARCHAR, 
+	"PreferenciasDieteticas" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00019s] ()
+INFO:sqlalchemy.engine.Engine:
+CREATE TABLE coach (
+	id INTEGER NOT NULL, 
+	"NombreCompleto" VARCHAR, 
+	"Telefono" VARCHAR, 
+	"CorreoElectronico" VARCHAR, 
+	hashed_password VARCHAR, 
+	PRIMARY KEY (id)
+)
+
+
+INFO:sqlalchemy.engine.Engine:[no key 0.00014s] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00021s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:INSERT INTO coach ("NombreCompleto", "Telefono", "CorreoElectronico", hashed_password) VALUES (?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00017s] ('Valeria Clayton', '+526441456020', 'teamclayton26@gmail.com', '$2b$12$zjPcRURB0PvdQbay5SpUdOuD94fS3AD7YsJFOOCOeNLGcmk4pPHJe')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00021s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 29.51s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00021s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00012s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 17.3s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00020s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00021s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 14.98s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00025s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00014s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 16.1s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00016s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00013s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00011s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 23.14s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 43.42s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00020s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00016s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 15.34s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00016s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 16.3s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00014s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 16.81s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00023s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 11.9s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 129.3s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 140s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 143.9s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 171.4s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 179.2s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00022s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00012s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 5.213s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 13.83s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00020s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00017s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 4.919s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 6.044s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 12.97s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00012s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 7.433s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 19.5s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00022s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 8.307s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 19.84s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 30.99s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00018s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00012s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 12.35s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00019s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00014s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 12.56s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00016s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 13.69s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00039s] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 601.8s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 588.1s ago] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00024s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00013s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 13.53s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00021s] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 39.09s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 25.31s ago] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 418.2s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 404.6s ago] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 615.4s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 601.9s ago] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 843.4s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 830s ago] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 864.7s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 851.2s ago] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 965.8s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 952.2s ago] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 1123s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 1110s ago] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00040s] ('2024-03-15', '14:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "Reservado", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00052s] ('Julian', '+526444475422', 'vida_saludable', '2024-03-15', '14:00:00.000000', 0, 'NINGUNA', 'NINGUNA', 'marketingconsultantsmx@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00028s] ('Julian', '+526444475422', 'vida_saludable', '2024-03-15', '14:00:00.000000', 'NINGUNA', 'NINGUNA', 'marketingconsultantsmx@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 1240s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[cached since 1226s ago] ('2024-03-15',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK

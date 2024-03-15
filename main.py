@@ -1,7 +1,7 @@
 import logging
 import uuid
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from fastapi import Cookie, Depends
+from fastapi import Cookie, Depends, Request
 from passlib.context import CryptContext
 from fastapi import FastAPI, HTTPException, Form, Request, Response, WebSocket, status
 from fastapi.staticfiles import StaticFiles
@@ -101,6 +101,17 @@ coach = Table(
 )
 security = HTTPBasic()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def set_auth_cookie(response: Response, username: str):
+    """
+    Función para establecer la cookie de autenticación en el objeto response.
+
+    Args:
+        response: Objeto Response donde se establece la cookie.
+        username: Nombre de usuario que se utilizará como valor de la cookie.
+    """
+    # Establece la cookie con el nombre de usuario como valor
+    response.set_cookie(key="username", value=username, httponly=True, samesite="Strict")
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
@@ -323,25 +334,31 @@ async def reservaciones_del_dia(Fecha: str):
 async def login_form(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
-@app.post("/login")
-async def login(response: Response, CorreoElectronico: str = Form(...), plain_password: str = Form(...)):
+@app.post("/login", response_class=HTMLResponse)
+async def login(response: Response, request: Request, CorreoElectronico: str = Form(...), plain_password: str = Form(...)):  # Add request argument
     db = Session(bind=engine)
     coach_record = db.execute(select(coach).where(coach.c.CorreoElectronico == CorreoElectronico)).first()
-    print(f"Registro de entrenador: {coach_record}")  # Imprimir el registro de entrenador
     if not coach_record or not verify_password(plain_password, coach_record.hashed_password):
-        print("Usuario o Contraseña Inválidos")  # Imprimir un mensaje si el inicio de sesión falla
         raise HTTPException(status_code=400, detail="Usuario o Contraseña Inválidos")
-    response.set_cookie(key="username", value=CorreoElectronico)  # Establecer la cookie
-    print("Cookie establecida")  # Imprimir un mensaje cuando se establece la cookie
-    return RedirectResponse(url="/coaches", status_code=303)  # Redirigir a /coaches
+
+    response.set_cookie(key="username", value=CorreoElectronico, httponly=True, samesite="Strict")
+    print("Cookie establecida")
+
+    return templates.TemplateResponse("coaches.html", {"request": request})  # Renderizar la página de entrenadores directamente
 
 @app.get("/coaches", response_class=HTMLResponse)
 async def coaches(request: Request, username: str = Cookie(None)):  # Obtener la cookie
-    print(f"Username: {username}")  # Imprimir el valor de la cookie
+    # No es necesaria la verificación de la cookie aquí
+    print(f"Username: {username}")  # Imprimir el valor de la cookie (opcional)
     if not username:
         print("Redirigiendo al inicio de sesión")  # Imprimir un mensaje antes de redirigir
         return RedirectResponse(url="/login")  # Redirigir al inicio de sesión si no hay cookie
-    return templates.TemplateResponse("coaches.html", {"request": request})
+    return templates.TemplateResponse("coaches.html", {"request": request})  # Corregir el nombre de la plantilla y el orden de los argumentos
+
+@app.get("/logout")
+def logout(response: Response):
+    response.delete_cookie(key="username")
+    return RedirectResponse(url="/login")
 
 @app.get("/disclaimer", response_class=HTMLResponse)
 async def disclaimer(request: Request):
