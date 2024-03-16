@@ -80,3 +80,24 @@ input[type="reset"]:hover {
     margin-right: 10px; /* Agregar espacio entre los iconos de las redes sociales */
     font-size: 35px; /* Ajustar el tamaño de los iconos */
 }
+@media screen and (max-width: 600px) {
+    .form-container {
+        width: 90%; /* Aumenta el ancho del formulario en pantallas pequeñas */
+    }
+
+    input, textarea {
+        font-size: 16px; /* Aumenta el tamaño de fuente en los campos del formulario */
+    }
+
+    .logo-image {
+        width: 80px; /* Reduce el tamaño del logotipo */
+    }
+
+    footer {
+        font-size: 12px; /* Reduce el tamaño de fuente en el pie de página */
+    }
+
+    .redes-sociales {
+        font-size: 25px; /* Reduce el tamaño de los iconos de las redes sociales */
+    }
+}
