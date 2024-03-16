@@ -5514,3 +5514,151 @@ FROM "Reservaciones"
 WHERE "Reservaciones"."Fecha" >= ?
 INFO:sqlalchemy.engine.Engine:[cached since 1226s ago] ('2024-03-15',)
 INFO:sqlalchemy.engine.Engine:ROLLBACK
+ERROR:fastapi:Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:uvicorn.error:Started server process [87138]
+INFO:uvicorn.error:Waiting for application startup.
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00011s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:uvicorn.error:Application startup complete.
+INFO:uvicorn.error:Uvicorn running on http://127.0.0.1:8002 (Press CTRL+C to quit)
+INFO:uvicorn.error:Shutting down
+INFO:uvicorn.error:Waiting for application shutdown.
+INFO:uvicorn.error:Application shutdown complete.
+INFO:uvicorn.error:Finished server process [87138]
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:uvicorn.error:Started server process [87751]
+INFO:uvicorn.error:Waiting for application startup.
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00018s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00011s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:uvicorn.error:Application startup complete.
+INFO:uvicorn.error:Uvicorn running on http://127.0.0.1:8002 (Press CTRL+C to quit)
+INFO:uvicorn.error:Shutting down
+INFO:uvicorn.error:Waiting for application shutdown.
+INFO:uvicorn.error:Application shutdown complete.
+INFO:uvicorn.error:Finished server process [87751]
+ERROR:fastapi:Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+ERROR:fastapi:Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+ERROR:fastapi:Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+ERROR:fastapi:Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+ERROR:fastapi:Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+ERROR:fastapi:Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00011s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00011s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" = ? AND "Reservaciones"."Hora" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00021s] ('2024-03-18', '08:00:00.000000')
+INFO:sqlalchemy.engine.Engine:INSERT INTO "Reservaciones" ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "Reservado", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00020s] ('Julian', '+526444475422', 'vida_saludable', '2024-03-18', '08:00:00.000000', 0, 'NINGUNA', 'NINGUNA', 'marketingconsultantsmx@gmail.com')
+INFO:sqlalchemy.engine.Engine:INSERT INTO clientes ("NombreCompleto", "Telefono", "ObjetivoFitness", "Fecha", "Hora", "InformacionSalud", "PreferenciasDieteticas", "CorreoElectronico") VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00019s] ('Julian', '+526444475422', 'vida_saludable', '2024-03-18', '08:00:00.000000', 'NINGUNA', 'NINGUNA', 'marketingconsultantsmx@gmail.com')
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[cached since 242.1s ago] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT "Reservaciones".id, "Reservaciones"."NombreCompleto", "Reservaciones"."Telefono", "Reservaciones"."ObjetivoFitness", "Reservaciones"."Fecha", "Reservaciones"."Hora", "Reservaciones"."Reservado", "Reservaciones"."InformacionSalud", "Reservaciones"."PreferenciasDieteticas", "Reservaciones"."CorreoElectronico" 
+FROM "Reservaciones" 
+WHERE "Reservaciones"."Fecha" >= ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00049s] ('2024-03-16',)
+INFO:sqlalchemy.engine.Engine:ROLLBACK
