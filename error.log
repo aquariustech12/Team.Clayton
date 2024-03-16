@@ -5662,3 +5662,22 @@ FROM "Reservaciones"
 WHERE "Reservaciones"."Fecha" >= ?
 INFO:sqlalchemy.engine.Engine:[generated in 0.00049s] ('2024-03-16',)
 INFO:sqlalchemy.engine.Engine:ROLLBACK
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("clientes")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("Reservaciones")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:PRAGMA main.table_info("coach")
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach 
+WHERE coach."CorreoElectronico" = ?
+INFO:sqlalchemy.engine.Engine:[generated in 0.00015s] ('teamclayton26@gmail.com',)
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:SELECT coach.id, coach."NombreCompleto", coach."Telefono", coach."CorreoElectronico", coach.hashed_password 
+FROM coach
+INFO:sqlalchemy.engine.Engine:[generated in 0.00010s] ()
+INFO:sqlalchemy.engine.Engine:ROLLBACK
